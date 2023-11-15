@@ -1,0 +1,97 @@
+{
+  "name": "avans-nx-project",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "avans-nx-project",
+  "sourceRoot": "apps/avans-nx-project/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/avans-nx-project",
+        "index": "apps/avans-nx-project/src/index.html",
+        "browser": "apps/avans-nx-project/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/avans-nx-project/tsconfig.app.json",
+        "assets": [
+          "apps/avans-nx-project/src/favicon.ico",
+          "apps/avans-nx-project/src/assets"
+        ],
+        "styles": ["apps/avans-nx-project/src/styles.css"],
+        "scripts": [],
+        "server": "apps/avans-nx-project/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/avans-nx-project/server.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "avans-nx-project:build:production"
+        },
+        "development": {
+          "buildTarget": "avans-nx-project:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "avans-nx-project:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/avans-nx-project/**/*.ts",
+          "apps/avans-nx-project/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/avans-nx-project/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "avans-nx-project:build",
+        "staticFilePath": "dist/apps/avans-nx-project/browser"
+      }
+    }
+  }
+}
