@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { BackendFeaturesCardModule } from '@avans-nx-project/backend/features';
 
 @Module({
-  imports: [],
+  imports: [BackendFeaturesCardModule],
   controllers: [AppController],
   providers: [AppService],
 })
