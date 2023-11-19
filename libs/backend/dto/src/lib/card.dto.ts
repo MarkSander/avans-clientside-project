@@ -6,17 +6,17 @@ import {
   IsDate,
 } from 'class-validator';
 import {
-  ICreateMeal,
-  IUpdateMeal,
-  IUpsertMeal,
-  MealSort,
+  ICreateCard,
+  IUpdateCard,
+  IUpsertCard,
+  CardSort,
 } from '@avans-nx-workshop/shared/api';
 
 /**
  * Use the `Pick` utility type to extract only the properties we want for
  * new to-do items
  */
-export class CreateMealDto implements ICreateMeal {
+export class CreateCardDto implements ICreateCard {
   @IsString()
   @IsNotEmpty()
   title!: string;
@@ -27,14 +27,14 @@ export class CreateMealDto implements ICreateMeal {
 
   @IsString()
   @IsNotEmpty()
-  sort!: MealSort;
+  sort!: CardSort;
 
   @IsString()
   @IsNotEmpty()
   cook!: string;
 }
 
-export class UpsertMealDto implements IUpsertMeal {
+export class UpsertCardDto implements IUpsertCard {
   @IsString()
   @IsNotEmpty()
   title!: string;
@@ -57,14 +57,14 @@ export class UpsertMealDto implements IUpsertMeal {
 
   @IsString()
   @IsNotEmpty()
-  sort!: MealSort;
+  sort!: CardSort;
 
   @IsString()
   @IsNotEmpty()
   cook!: string;
 }
 
-export class UpdateMealDto implements IUpdateMeal {
+export class UpdateCardDto implements IUpdateCard {
   @IsString()
   @IsOptional()
   title!: string;

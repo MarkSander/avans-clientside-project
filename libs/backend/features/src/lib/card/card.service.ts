@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { IMeal } from '@avans-nx-workshop/shared/api';
+import { ICard } from '@avans-nx-workshop/shared/api';
 import { BehaviorSubject } from 'rxjs';
 import { Logger } from '@nestjs/common';
 
 @Injectable()
-export class MealService {
-  TAG = 'MealService';
+export class CardService {
+  TAG = 'CardService';
 
-  private meals$ = new BehaviorSubject<IMeal[]>([
+  private cards$ = new BehaviorSubject<ICard[]>([
     {
       id: '0',
       title: 'Spaghetti con funghi',
@@ -17,18 +17,18 @@ export class MealService {
     },
   ]);
 
-  getAll(): IMeal[] {
+  getAll(): ICard[] {
     Logger.log('getAll', this.TAG);
-    return this.meals$.value;
+    return this.cards$.value;
   }
 
-  getOne(id: string): IMeal {
+  getOne(id: string): ICard {
     Logger.log(`getOne(${id})`, this.TAG);
-    const meal = this.meals$.value.find((td) => td.id === id);
-    if (!meal) {
-      throw new NotFoundException(`Meal could not be found!`);
+    const card = this.cards$.value.find((td) => td.id === id);
+    if (!card) {
+      throw new NotFoundException(`Card could not be found!`);
     }
-    return meal;
+    return card;
   }
 
   /**
@@ -36,17 +36,17 @@ export class MealService {
    * return signature - we still want to respond with the complete
    * object
    */
-  create(meal: Pick<IMeal, 'title' | 'description'>): IMeal {
+  create(card: Pick<ICard, 'title' | 'description'>): ICard {
     Logger.log('create', this.TAG);
-    const current = this.meals$.value;
+    const current = this.cards$.value;
     // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
-    const newMeal: IMeal = {
-      ...meal,
-      id: `meal-${Math.floor(Math.random() * 10000)}`,
+    const newCard: ICard = {
+      ...card,
+      id: `card-${Math.floor(Math.random() * 10000)}`,
       isVega: false,
       dateServed: new Date(),
     };
-    this.meals$.next([...current, newMeal]);
-    return newMeal;
+    this.cards$.next([...current, newCard]);
+    return newCard;
   }
 }

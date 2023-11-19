@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { CardController } from './card/card.controller';
-import { MealService } from './card/card.service';
+import { CardService } from './card/card.service';
 
 @Module({
   controllers: [CardController],
-  providers: [MealService],
-  exports: [MealService],
+  providers: [CardService],
+  exports: [CardService],
 })
 export class BackendFeaturesCardModule {}

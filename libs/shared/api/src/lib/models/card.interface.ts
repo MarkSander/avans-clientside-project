@@ -1,6 +1,6 @@
 //import { Id } from './id.type';
 export type Id = string;
-export enum MealSort {
+export enum CardSort {
   Breakfast = 'Breakfast',
   Lunch = 'Lunch',
   Dinner = 'Dinner',
@@ -10,7 +10,7 @@ export enum MealSort {
 // Voor nu is onze user een string; later zullen we hier een User object van maken.
 //type User = string;
 
-export interface IMeal {
+export interface ICard {
   id: Id;
   title: string;
   description: string;
@@ -21,10 +21,10 @@ export interface IMeal {
   //cook: User;
 }
 
-export type ICreateMeal = Pick<
-  IMeal,
+export type ICreateCard = Pick<
+  ICard,
   'title' | 'description'
   // | 'sort' | 'cook'
 >;
-export type IUpdateMeal = Partial<Omit<IMeal, 'id'>>;
-export type IUpsertMeal = IMeal;
+export type IUpdateCard = Partial<Omit<ICard, 'id'>>;
+export type IUpsertCard = ICard;
