@@ -1,0 +1,41 @@
+/* nav.component.css */
+
+/* Style the navbar */
+.navbar {
+  background-color: #ffffff; /* Set your desired background color */
+}
+
+/* Style the navbar brand */
+.navbar-brand {
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the font bold if desired */
+}
+
+/* Style the navigation items */
+.navbar-nav {
+  margin-left: auto; /* Push the navigation items to the right */
+}
+
+.nav-item {
+  margin-right: 15px; /* Add some spacing between the navigation items */
+}
+
+/* Style the active navigation item */
+.nav-item.active {
+  font-weight: bold; /* Make the active item bold if desired */
+}
+
+/* Style the toggle button for smaller screens */
+.navbar-toggler-icon {
+  border-color: #007bff; /* Set the color of the toggle button icon */
+}
+
+/* Style the form button */
+.btn-outline-success {
+  margin-right: 15px; /* Add some spacing between the button and navigation items */
+}
+
+/* Optionally, add a bit of padding to the navbar */
+.navbar {
+  padding: 10px;
+}
