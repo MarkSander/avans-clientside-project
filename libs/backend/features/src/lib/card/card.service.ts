@@ -10,10 +10,11 @@ export class CardService {
   private cards$ = new BehaviorSubject<ICard[]>([
     {
       id: '0',
-      title: 'Spaghetti con funghi',
-      description: 'Vega version of the famous spaghetti recipe.',
-      isVega: true,
-      dateServed: new Date(),
+      title: 'Apex Devastator',
+      type: 'Creature',
+      rarity: 'Mythic',
+      legendary: true,
+      manacost: 10,
     },
   ]);
 
@@ -36,15 +37,15 @@ export class CardService {
    * return signature - we still want to respond with the complete
    * object
    */
-  create(card: Pick<ICard, 'title' | 'description'>): ICard {
+  create(
+    card: Pick<ICard, 'title' | 'type' | 'rarity' | 'legendary' | 'manacost'>
+  ): ICard {
     Logger.log('create', this.TAG);
     const current = this.cards$.value;
     // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
     const newCard: ICard = {
       ...card,
       id: `card-${Math.floor(Math.random() * 10000)}`,
-      isVega: false,
-      dateServed: new Date(),
     };
     this.cards$.next([...current, newCard]);
     return newCard;

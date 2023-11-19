@@ -1,11 +1,11 @@
 //import { Id } from './id.type';
 export type Id = string;
-export enum CardSort {
+/* export enum CardSort {
   Breakfast = 'Breakfast',
   Lunch = 'Lunch',
   Dinner = 'Dinner',
   Other = 'Other',
-}
+} */
 
 // Voor nu is onze user een string; later zullen we hier een User object van maken.
 //type User = string;
@@ -13,9 +13,10 @@ export enum CardSort {
 export interface ICard {
   id: Id;
   title: string;
-  description: string;
-  isVega: boolean;
-  dateServed: Date;
+  type: string;
+  rarity: string;
+  legendary: boolean;
+  manacost: number;
   //sort: MealSort;
   // Naam van de persoon die de maaltijd aanmaakt en kookt.
   //cook: User;
@@ -23,7 +24,7 @@ export interface ICard {
 
 export type ICreateCard = Pick<
   ICard,
-  'title' | 'description'
+  'title' | 'type' | 'rarity' | 'legendary' | 'manacost'
   // | 'sort' | 'cook'
 >;
 export type IUpdateCard = Partial<Omit<ICard, 'id'>>;

@@ -3,13 +3,13 @@ import {
   IsString,
   IsBoolean,
   IsOptional,
-  IsDate,
+  IsNumber,
 } from 'class-validator';
 import {
   ICreateCard,
   IUpdateCard,
   IUpsertCard,
-  CardSort,
+  /*   CardSort, */
 } from '@avans-nx-workshop/shared/api';
 
 /**
@@ -23,15 +23,19 @@ export class CreateCardDto implements ICreateCard {
 
   @IsString()
   @IsNotEmpty()
-  description!: string;
+  type!: string;
 
   @IsString()
   @IsNotEmpty()
-  sort!: CardSort;
+  rarity!: string;
 
-  @IsString()
+  @IsBoolean()
   @IsNotEmpty()
-  cook!: string;
+  legendary!: boolean;
+
+  @IsNumber()
+  @IsNotEmpty()
+  manacost!: number;
 }
 
 export class UpsertCardDto implements IUpsertCard {
@@ -41,27 +45,23 @@ export class UpsertCardDto implements IUpsertCard {
 
   @IsString()
   @IsNotEmpty()
-  description!: string;
+  id!: string;
 
   @IsString()
   @IsNotEmpty()
-  id!: string;
+  type!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  rarity!: string;
 
   @IsBoolean()
   @IsNotEmpty()
-  isVega!: boolean;
+  legendary!: boolean;
 
-  @IsDate()
+  @IsNumber()
   @IsNotEmpty()
-  dateServed!: Date;
-
-  @IsString()
-  @IsNotEmpty()
-  sort!: CardSort;
-
-  @IsString()
-  @IsNotEmpty()
-  cook!: string;
+  manacost!: number;
 }
 
 export class UpdateCardDto implements IUpdateCard {
@@ -71,9 +71,9 @@ export class UpdateCardDto implements IUpdateCard {
 
   @IsString()
   @IsOptional()
-  description!: string;
+  type!: string;
 
   @IsBoolean()
   @IsOptional()
-  completed!: boolean;
+  legendary!: boolean;
 }

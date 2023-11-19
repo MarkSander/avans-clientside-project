@@ -60,6 +60,23 @@ export class CardService {
       );
   }
 
+  public edit(id: string) {
+    console.log(`edit ${this.endpoint}`);
+    return this.http
+      .put<ApiResponse<ICard>>(`${this.endpoint}/${id}`, httpOptions)
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as ICard),
+        catchError(this.handleError)
+      );
+  }
+
+  public delete(id: string) {
+    console.log(`delete ${this.endpoint}`);
+    return this.http
+      .delete<ApiResponse<void>>(`${this.endpoint}/${id}`)
+      .pipe(tap(console.log), catchError(this.handleError));
+  }
   /**
    * Handle errors.
    */

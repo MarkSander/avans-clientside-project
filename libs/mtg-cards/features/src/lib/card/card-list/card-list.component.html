@@ -1,5 +1,5 @@
 <div *ngFor="let card of cards">
     <h2> {{card.title}}</h2>
-    <p> {{card.description}}</p>
-    <p> {{card.dateServed | date : 'long'}}</p>
+    <p> {{card.type}}</p>
+    <p> *ngIf="{{card.legendary}}" Legendary</p>
 </div>
