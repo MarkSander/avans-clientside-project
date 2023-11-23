@@ -8,8 +8,8 @@ import { CardDetailComponent } from './card/card-detail/card-detail.component';
 import { NavComponent } from './nav/nav.component';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, CardDetailComponent, NavComponent],
-  declarations: [CardListComponent, AboutComponent],
+  imports: [CommonModule, HttpClientModule, NavComponent],
+  declarations: [CardListComponent, CardDetailComponent, AboutComponent],
   providers: [CardService],
   exports: [
     CardListComponent,

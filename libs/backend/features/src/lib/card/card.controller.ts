@@ -3,12 +3,13 @@ import { CardService } from './card.service';
 import { Get, Param, Post, Body } from '@nestjs/common';
 import { ICard } from '@avans-nx-workshop/shared/api';
 import { CreateCardDto } from '@avans-nx-project/backend/dto';
+import { Card } from './card.schema';
 @Controller('card')
 export class CardController {
   constructor(private mealService: CardService) {}
 
   @Get('')
-  getAll(): ICard[] {
+  getAll(): Promise<Card[]> {
     return this.mealService.getAll();
   }
 
@@ -18,7 +19,7 @@ export class CardController {
   }
 
   @Post('')
-  create(@Body() data: CreateCardDto): ICard {
-    return this.mealService.create(data);
+  create(@Body() data: CreateCardDto): Promise<Card> {
+    return this.mealService.createCard(data);
   }
 }

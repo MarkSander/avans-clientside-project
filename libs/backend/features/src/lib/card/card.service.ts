@@ -2,9 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { ICard } from '@avans-nx-workshop/shared/api';
 import { BehaviorSubject } from 'rxjs';
 import { Logger } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Card } from './card.schema';
+import { Model } from 'mongoose';
+import { CreateCardDto } from '@avans-nx-project/backend/dto';
 
 @Injectable()
 export class CardService {
+  constructor(@InjectModel(Card.name) private cardModel: Model<Card>) {}
   TAG = 'CardService';
 
   private cards$ = new BehaviorSubject<ICard[]>([
@@ -18,9 +23,9 @@ export class CardService {
     },
   ]);
 
-  getAll(): ICard[] {
+  getAll(): Promise<Card[]> {
     Logger.log('getAll', this.TAG);
-    return this.cards$.value;
+    return this.cardModel.find().exec();
   }
 
   getOne(id: string): ICard {
@@ -49,5 +54,10 @@ export class CardService {
     };
     this.cards$.next([...current, newCard]);
     return newCard;
+  }
+
+  createCard(createCardDto: CreateCardDto): Promise<Card> {
+    const createdCard = new this.cardModel(createCardDto);
+    return createdCard.save();
   }
 }
