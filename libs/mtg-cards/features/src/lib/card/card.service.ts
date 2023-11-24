@@ -50,7 +50,7 @@ export class CardService {
   public read(id: string | null, options?: any): Observable<Card> {
     console.log(`read ${this.endpoint}`);
     return this.http
-      .get<ApiResponse<Card>>(this.endpoint, {
+      .get<ApiResponse<Card>>(`${this.endpoint}/${id}`, {
         ...options,
         ...httpOptions,
       })

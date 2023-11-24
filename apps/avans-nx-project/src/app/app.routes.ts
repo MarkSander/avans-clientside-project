@@ -1,12 +1,25 @@
 import { Route } from '@angular/router';
-import {
+/* import {
   AboutComponent,
   CardDetailComponent,
   CardListComponent,
-} from '@avans-nx-project/mtg-cards/features';
+} from '@avans-nx-project/mtg-cards/features'; */
 export const appRoutes: Route[] = [
-  { path: '', pathMatch: 'full', redirectTo: '' },
-  { path: 'about', pathMatch: 'full', component: AboutComponent },
+  {
+    path: 'cards',
+    loadChildren: () =>
+      import('@avans-nx-project/mtg-cards/features').then((c) => c.CardModule),
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('@avans-nx-project/mtg-cards/features').then(
+        (c) => c.AboutComponent
+      ),
+  },
+
+  /*   { path: '', pathMatch: 'full', redirectTo: '' },
+
   { path: 'cardDetail', pathMatch: 'full', component: CardDetailComponent },
-  { path: 'cardList', pathMatch: 'full', component: CardListComponent },
+  { path: 'cardList', pathMatch: 'full', component: CardListComponent }, */
 ];

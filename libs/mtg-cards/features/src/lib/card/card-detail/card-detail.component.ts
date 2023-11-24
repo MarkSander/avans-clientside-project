@@ -26,6 +26,7 @@ export class CardDetailComponent implements OnInit, OnDestroy {
       }
     });
 
+    console.log(`Sending getOne request with id ${this.id}`);
     this.subscription = this.cardService.read(this.id).subscribe((result) => {
       console.log(`result: ${result}`);
       this.card = result;
