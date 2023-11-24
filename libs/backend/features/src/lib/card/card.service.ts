@@ -42,8 +42,21 @@ export class CardService {
     }
   }
 
-  createCard(createCardDto: CreateCardDto): Promise<Card> {
-    const createdCard = new this.cardModel(createCardDto);
+  async createCard(createCardDto: CreateCardDto): Promise<Card> {
+    const createdCard = await new this.cardModel(createCardDto);
     return createdCard.save();
+  }
+
+  async updateCard(newCard: Card): Promise<Card | null> {
+    const updateCard = newCard;
+
+    try {
+      const updatedCard = await this.cardModel
+        .findByIdAndUpdate(updateCard._id, updateCard)
+        .exec();
+      return updatedCard ?? null;
+    } catch (error) {
+      throw new Error(`Error updating card: ${error}`);
+    }
   }
 }
