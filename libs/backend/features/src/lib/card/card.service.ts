@@ -59,4 +59,9 @@ export class CardService {
       throw new Error(`Error updating card: ${error}`);
     }
   }
+
+  async deleteCard(id: string) {
+    Logger.log(`Delete card ${id}`);
+    return await this.cardModel.findByIdAndDelete(id).exec();
+  }
 }

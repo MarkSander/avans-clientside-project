@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Delete } from '@nestjs/common';
 import { CardService } from './card.service';
 import { Get, Param, Post, Body, Put } from '@nestjs/common';
 import { CreateCardDto } from '@avans-nx-project/backend/dto';
@@ -25,5 +25,10 @@ export class CardController {
   @Put(':id')
   put(@Body() data: Card): Promise<Card | null> {
     return this.cardService.updateCard(data);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return this.cardService.deleteCard(id);
   }
 }
