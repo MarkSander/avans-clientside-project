@@ -61,13 +61,16 @@ export class CardService {
       );
   }
 
-  public edit(id: string) {
+  public edit(card: Card, options?: any): Observable<Card> {
     console.log(`edit ${this.endpoint}`);
     return this.http
-      .put<ApiResponse<ICard>>(`${this.endpoint}/${id}`, httpOptions)
+      .put<ApiResponse<ICard>>(`${this.endpoint}/${card._id}`, card, {
+        ...options,
+        ...httpOptions,
+      })
       .pipe(
         tap(console.log),
-        map((response: any) => response.results as ICard),
+        map((response: any) => response.results as Card),
         catchError(this.handleError)
       );
   }

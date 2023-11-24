@@ -1,0 +1,92 @@
+<form *ngIf= 'card' [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+  <div class="component edit">
+    <div class="flex flex-wrap ">
+      <div class="md:w-1/2 pr-4 pl-4"><p>Edit works!</p></div>
+    </div>
+    <div class="flex flex-wrap ">
+      <div class="w-1/4">
+        <p>Card name: </p>
+         <input
+          #cardname
+          type="cardname"
+          class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
+          value="{{ card?.title }}"
+          placeholder="The name of the card"
+          formControlName="title"
+        />
+      </div>
+      <div class="w-1/4">
+      </div>
+    </div>
+    <div class="flex flex-wrap ">
+      <div class="w-1/4">
+        <p>Card type: </p>
+        <input
+          #cardType
+          type="cardtype"
+          class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
+          value="{{ card?.type }}"
+          placeholder="your card type"
+          formControlName="type"
+        />
+      </div>
+      <div class="w-1/4">
+        <p>Card Rarity: </p>
+        <input
+        #cardRarity
+        type="cardrarity"
+        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
+        value="{{ card?.rarity }}"
+        placeholder="your card rarity"
+        formControlName="rarity"
+      />
+      </div>
+    </div>
+    <div class="flex flex-wrap ">
+        <div class="w-1/4">
+          <p>Legendary: </p>
+          <input
+            #price
+            type="Legendary"
+            class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
+            value="{{ card?.legendary }}"
+            placeholder="Is the card legendary"
+            formControlName="legendary"
+            />
+        </div>
+        <div class="w-1/4">
+          <p>Manacost: </p>
+          <input
+            #manacost
+            type="number"
+            class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
+            value="{{ card?.manacost }}"
+            placeholder="The manacost of the card"
+            formControlName="manacost"
+            />
+        </div>
+    </div>
+
+    <div class="flex flex-wrap  justify-end">
+      <div class="w-1/2">
+        <!-- Bij Save roepen we de save() functie aan, en navigeren
+          terug naar details binnen die functie -->
+        <button
+          class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded  no-underline bg-blue-600 text-white hover:bg-blue-600 py-1 px-2 leading-tight text-xs  float-right"
+          href="#"
+          role="button"
+        >
+          Save
+        </button>
+        <!-- Bij Cancel doen we nu nog niets, maar gaan gewoon terug naar de details -->
+        <a
+          class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded  no-underline text-gray-600 border-gray-600 hover:bg-gray-600 hover:text-white bg-white hover:bg-gray-700 py-1 px-2 leading-tight text-xs  float-right"
+          href="#"
+          role="button"
+          routerLink=".."
+          >Cancel</a
+        >
+      </div>
+    </div>
+  </div>
+  </form>
