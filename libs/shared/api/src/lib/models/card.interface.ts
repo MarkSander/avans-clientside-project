@@ -11,7 +11,7 @@ export type Id = string;
 //type User = string;
 
 export interface ICard {
-  id: Id;
+  _id: Id;
   title: string;
   type: string;
   rarity: string;

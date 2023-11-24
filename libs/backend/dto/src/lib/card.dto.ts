@@ -41,6 +41,10 @@ export class CreateCardDto implements ICreateCard {
 export class UpsertCardDto implements IUpsertCard {
   @IsString()
   @IsNotEmpty()
+  _id!: string;
+
+  @IsString()
+  @IsNotEmpty()
   title!: string;
 
   @IsString()

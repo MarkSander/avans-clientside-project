@@ -1,7 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { CardService } from './card.service';
 import { Get, Param, Post, Body } from '@nestjs/common';
-import { ICard } from '@avans-nx-workshop/shared/api';
 import { CreateCardDto } from '@avans-nx-project/backend/dto';
 import { Card } from './card.schema';
 @Controller('card')
@@ -14,7 +13,7 @@ export class CardController {
   }
 
   @Get(':id')
-  getOne(@Param('id') id: string): ICard {
+  getOne(@Param('id') id: string): Promise<Card> {
     return this.mealService.getOne(id);
   }
 
