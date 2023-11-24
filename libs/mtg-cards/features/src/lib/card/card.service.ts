@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, ICard } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
+import { Card } from '@avans-nx-project/backend/features';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
@@ -46,16 +47,16 @@ export class CardService {
    * Get a single item from the service.
    *
    */
-  public read(id: string | null, options?: any): Observable<ICard> {
+  public read(id: string | null, options?: any): Observable<Card> {
     console.log(`read ${this.endpoint}`);
     return this.http
-      .get<ApiResponse<ICard>>(this.endpoint, {
+      .get<ApiResponse<Card>>(this.endpoint, {
         ...options,
         ...httpOptions,
       })
       .pipe(
         tap(console.log),
-        map((response: any) => response.results as ICard),
+        map((response: any) => response.results as Card),
         catchError(this.handleError)
       );
   }
