@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run-many --target=serve --all",
+    "dev": "nx run-many --target=serve --all",
+    "start": "serve dist -s -n -L -p $PORT",
     "deploy": "nx run avans-nx-project:build",
     "build": "nx run-many --target=build --all",
     "test": "nx run-many -t test"
@@ -30,6 +31,7 @@
     "express": "~4.18.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
+    "serve": "^14.2.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.0"
   },
