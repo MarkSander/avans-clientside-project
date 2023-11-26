@@ -61,6 +61,15 @@ export class CardService {
       );
   }
 
+  public createCard(card: Card) {
+    console.log(`create ${this.endpoint}`);
+    return this.http.post<ApiResponse<Card>>(`${this.endpoint}`, card).pipe(
+      tap(console.log),
+      map((response: any) => response.results as Card),
+      catchError(this.handleError)
+    );
+  }
+
   public edit(card: Card, options?: any): Observable<Card> {
     console.log(`edit ${this.endpoint}`);
     return this.http

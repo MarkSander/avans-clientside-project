@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SetService } from '../set.service';
-import { ICard } from '@avans-nx-workshop/shared/api';
+import { ISet } from '@avans-nx-workshop/shared/api';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './set-list.component.html',
   styleUrls: ['./set-list.component.css'],
 })
-export class CardListComponent implements OnInit, OnDestroy {
-  cards: ICard[] | null = null;
+export class SetListComponent implements OnInit, OnDestroy {
+  cards: ISet[] | null = null;
   subscription: Subscription | undefined = undefined;
 
   constructor(private setService: SetService) {}
