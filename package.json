@@ -8,7 +8,7 @@
     "deploy": "nx run avans-nx-project:build",
     "build": "nx run-many --target=build --all",
     "test": "nx run-many -t test",
-    "front-end": "nx s avans-nx-project"
+    "front-end": "nx s avans-nx-project --verbose"
   },
   "private": true,
   "dependencies": {
