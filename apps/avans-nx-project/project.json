@@ -21,10 +21,9 @@
         ],
         "styles": ["apps/avans-nx-project/src/styles.css"],
         "scripts": [],
-        "server": "apps/avans-nx-project/src/main.server.ts",
         "prerender": true,
         "ssr": {
-          "entry": "apps/avans-nx-project/server.ts"
+
         }
       },
       "configurations": {
