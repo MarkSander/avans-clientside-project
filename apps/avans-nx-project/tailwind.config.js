@@ -4,11 +4,13 @@ const { join } = require('path');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
-    ...createGlobPatternsForDependencies(__dirname),
+    //join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    //...createGlobPatternsForDependencies(__dirname),
+    './src/**/*.{html,ts}',
+    './node_modules/flowbite/**/*.js',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
 };
