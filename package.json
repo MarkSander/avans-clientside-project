@@ -7,7 +7,8 @@
     "start": "serve dist -s -n -L -p $PORT",
     "deploy": "nx run avans-nx-project:build",
     "build": "nx run-many --target=build --all",
-    "test": "nx run-many -t test"
+    "test": "nx run-many -t test",
+    "front-end": "nx s avans-nx-project"
   },
   "private": true,
   "dependencies": {
