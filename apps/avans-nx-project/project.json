@@ -19,8 +19,10 @@
           "apps/avans-nx-project/src/favicon.ico",
           "apps/avans-nx-project/src/assets"
         ],
-        "styles": ["apps/avans-nx-project/src/styles.css"],
-        "scripts": [],
+        "styles": ["node_modules/bootstrap/dist/css/bootstrap.css", "apps/avans-nx-project/src/styles.css"],
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        ],
         "server": "apps/avans-nx-project/src/main.server.ts",
         "prerender": true,
         "ssr": {
