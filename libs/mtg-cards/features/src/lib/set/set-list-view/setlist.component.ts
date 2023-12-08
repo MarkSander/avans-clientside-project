@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Set } from '../set.model';
 import { SetService } from '../set.service';
@@ -9,7 +9,7 @@ import { ISet } from '@avans-nx-workshop/shared/api';
   templateUrl: './setlist.component.html',
   styles: [],
 })
-export class SetlistComponent implements OnInit {
+export class SetlistComponent implements OnInit, OnDestroy {
   sets: ISet[] | null = null;
   subscription: Subscription | undefined = undefined;
 

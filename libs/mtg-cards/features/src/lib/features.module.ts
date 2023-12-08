@@ -6,11 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardService } from './card/card.service';
 import { CardDetailComponent } from './card/card-detail/card-detail.component';
 import { NavComponent } from './nav/nav.component';
+import { SetService } from './set/set.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, CardDetailComponent, NavComponent],
   declarations: [AboutComponent],
-  providers: [CardService],
+  providers: [CardService, SetService],
   exports: [CardDetailComponent, AboutComponent, NavComponent],
 })
 export class FeaturesModule {}
