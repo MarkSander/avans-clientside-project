@@ -18,7 +18,7 @@ export const httpOptions = {
  */
 @Injectable()
 export class DeckService {
-  endpoint = 'http://localhost:6847/api/deck';
+  endpoint = 'http://localhost:3000/api/deck';
 
   constructor(private readonly http: HttpClient) {}
 

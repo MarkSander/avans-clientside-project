@@ -12,16 +12,10 @@ export class Deck {
   title!: string;
 
   @Prop()
-  type!: string;
+  set!: string;
 
   @Prop()
-  rarity!: string;
-
-  @Prop()
-  legendary!: boolean;
-
-  @Prop()
-  manacost!: number;
+  price!: number;
 }
 
 export const DeckSchema = SchemaFactory.createForClass(Deck);
