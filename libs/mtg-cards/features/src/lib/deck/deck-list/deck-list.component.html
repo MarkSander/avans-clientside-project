@@ -1,0 +1,5 @@
+<div *ngFor="let deck of decks">
+    <h2> {{deck.title}}</h2>
+    <p> {{deck.type}}</p>
+    <p> *ngIf="{{deck.legendary}}" Legendary</p>
+</div>

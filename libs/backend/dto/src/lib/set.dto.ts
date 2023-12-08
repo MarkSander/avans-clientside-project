@@ -17,10 +17,6 @@ export class CreateSetDto implements ICreateSet {
 
   @IsString()
   @IsNotEmpty()
-  type!: string;
-
-  @IsString()
-  @IsNotEmpty()
   cards!: string;
 }
 
@@ -31,7 +27,7 @@ export class UpsertSetDto implements IUpsertSet {
 
   @IsString()
   @IsNotEmpty()
-  id!: string;
+  _id!: string;
 
   @IsString()
   @IsNotEmpty()

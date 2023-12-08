@@ -7,11 +7,12 @@ import { CardService } from './card/card.service';
 import { CardDetailComponent } from './card/card-detail/card-detail.component';
 import { NavComponent } from './nav/nav.component';
 import { SetService } from './set/set.service';
+import { DeckService } from './deck/deck.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, CardDetailComponent, NavComponent],
   declarations: [AboutComponent],
-  providers: [CardService, SetService],
+  providers: [CardService, SetService, DeckService],
   exports: [CardDetailComponent, AboutComponent, NavComponent],
 })
 export class FeaturesModule {}
