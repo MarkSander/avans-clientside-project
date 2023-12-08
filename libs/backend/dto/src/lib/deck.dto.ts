@@ -1,10 +1,4 @@
-import {
-  IsNotEmpty,
-  IsString,
-  IsBoolean,
-  IsOptional,
-  IsNumber,
-} from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-validator';
 import {
   ICreateDeck,
   IUpdateDeck,
@@ -27,15 +21,11 @@ export class CreateDeckDto implements ICreateDeck {
 
   @IsString()
   @IsNotEmpty()
-  rarity!: string;
-
-  @IsBoolean()
-  @IsNotEmpty()
-  legendary!: boolean;
+  set!: string;
 
   @IsNumber()
   @IsNotEmpty()
-  manacost!: number;
+  price!: number;
 }
 
 export class UpsertDeckDto implements IUpsertDeck {
@@ -49,19 +39,11 @@ export class UpsertDeckDto implements IUpsertDeck {
 
   @IsString()
   @IsNotEmpty()
-  type!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  rarity!: string;
-
-  @IsBoolean()
-  @IsNotEmpty()
-  legendary!: boolean;
+  set!: string;
 
   @IsNumber()
   @IsNotEmpty()
-  manacost!: number;
+  price!: number;
 }
 
 export class UpdateDeckDto implements IUpdateDeck {
@@ -69,11 +51,7 @@ export class UpdateDeckDto implements IUpdateDeck {
   @IsOptional()
   title!: string;
 
-  @IsString()
+  @IsNumber()
   @IsOptional()
-  type!: string;
-
-  @IsBoolean()
-  @IsOptional()
-  legendary!: boolean;
+  price!: number;
 }

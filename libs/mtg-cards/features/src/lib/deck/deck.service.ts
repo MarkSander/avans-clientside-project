@@ -77,6 +77,15 @@ export class DeckService {
       .delete<ApiResponse<void>>(`${this.endpoint}/${id}`)
       .pipe(tap(console.log), catchError(this.handleError));
   }
+
+  public create(deck: IDeck) {
+    console.log(`create ${this.endpoint}`);
+    return this.http.post<ApiResponse<IDeck>>(`${this.endpoint}`, deck).pipe(
+      tap(console.log),
+      map((response: any) => response.results as IDeck),
+      catchError(this.handleError)
+    );
+  }
   /**
    * Handle errors.
    */

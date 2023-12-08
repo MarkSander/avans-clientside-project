@@ -12,10 +12,8 @@
 export interface IDeck {
   id: string;
   title: string;
-  type: string;
-  rarity: string;
-  legendary: boolean;
-  manacost: number;
+  set: string;
+  price: number;
   //sort: MealSort;
   // Naam van de persoon die de maaltijd aanmaakt en kookt.
   //cook: User;
@@ -23,7 +21,7 @@ export interface IDeck {
 
 export type ICreateDeck = Pick<
   IDeck,
-  'title' | 'type' | 'rarity' | 'legendary' | 'manacost'
+  'title' | 'set' | 'price'
   // | 'sort' | 'cook'
 >;
 export type IUpdateDeck = Partial<Omit<IDeck, 'id'>>;
