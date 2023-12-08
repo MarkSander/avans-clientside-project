@@ -1,4 +1,7 @@
-<div>
-  <p>Title: </p>
-  <input>
-</div>
+<form [formGroup]="form" (ngSubmit)="OnSubmit()" enctype="multipart/form-data">
+  <div>
+    <p>Deck Title: </p>
+    <input type="text" name="title" id="decktitle" formControlName="title">
+    <input>
+  </div>
+</form>
