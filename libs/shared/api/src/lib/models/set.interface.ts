@@ -11,7 +11,7 @@ export type SetId = string;
 //type User = string;
 
 export interface ISet {
-  id: SetId;
+  _id: SetId;
   title: string;
   cards: string;
   //sort: MealSort;

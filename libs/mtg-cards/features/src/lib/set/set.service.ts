@@ -1,38 +1,92 @@
-import { HttpClient } from '@angular/common/http';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
+import { ApiResponse, ISet } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { Set } from './set.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+/**
+ * See https://angular.io/guide/http#requesting-data-from-a-server
+ */
+export const httpOptions = {
+  observe: 'body',
+  responseType: 'json',
+};
+
+/**
+ *
+ *
+ */
+@Injectable()
 export class SetService {
-  constructor(private http: HttpClient) {}
+  endpoint = 'http://localhost:3000/api/set';
 
-  getAllSets(): Observable<Set[]> {
-    console.log('getAllSets aangeroepen');
-    return this.http.get<any>(environment.apiUrl + 'set');
+  constructor(private readonly http: HttpClient) {}
+
+  /**
+   * Get all items.
+   *
+   * @options options - optional URL queryparam options
+   */
+  public list(options?: any): Observable<ISet[] | null> {
+    console.log(`list ${this.endpoint}`);
+
+    return this.http
+      .get<ApiResponse<ISet[]>>(this.endpoint, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        map((response: any) => response.results as ISet[]),
+        tap(console.log),
+        catchError(this.handleError)
+      );
   }
 
-  getSetById(id: string): Observable<any> {
-    console.log('getUserById aangeroepen');
-    //return this.cards.filter((card) => card._id === id)[0];
-    return this.http.get<any>(environment.apiUrl + `set/${id}`);
+  /**
+   * Get a single item from the service.
+   *
+   */
+  public read(id: string | null, options?: any): Observable<ISet> {
+    console.log(`read ${this.endpoint}`);
+    return this.http
+      .get<ApiResponse<ISet>>(`${this.endpoint}/${id}`, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as ISet),
+        catchError(this.handleError)
+      );
   }
 
-  editSet(id: string, set: Set) {
-    console.log('editSet aangeroepen');
-    return this.http.put<any>(environment.apiUrl + `set/${id}`, set);
+  public edit(set: ISet, options?: any): Observable<ISet> {
+    console.log(`edit ${this.endpoint}`);
+    return this.http
+      .put<ApiResponse<ISet>>(`${this.endpoint}/${set._id}`, set, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as ISet),
+        catchError(this.handleError)
+      );
   }
 
-  newSet(set: Set) {
-    console.log('newSet aangeroepen');
-    return this.http.post<any>(environment.apiUrl + `set`, set);
+  public delete(id: string) {
+    console.log(`delete ${this.endpoint}`);
+    return this.http
+      .delete<ApiResponse<void>>(`${this.endpoint}/${id}`)
+      .pipe(tap(console.log), catchError(this.handleError));
   }
+  /**
+   * Handle errors.
+   */
+  public handleError(error: HttpErrorResponse): Observable<any> {
+    console.log('handleError in CardService', error);
 
-  deleteSet(id: string) {
-    console.log('deleteSet aangeroepen');
-    return this.http.delete<any>(environment.apiUrl + `set/${id}`);
+    return throwError(() => new Error(error.message));
   }
 }

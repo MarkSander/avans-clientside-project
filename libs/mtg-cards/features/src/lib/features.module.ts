@@ -9,13 +9,8 @@ import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, CardDetailComponent, NavComponent],
-  declarations: [CardListComponent, AboutComponent],
+  declarations: [AboutComponent],
   providers: [CardService],
-  exports: [
-    CardListComponent,
-    CardDetailComponent,
-    AboutComponent,
-    NavComponent,
-  ],
+  exports: [CardDetailComponent, AboutComponent, NavComponent],
 })
 export class FeaturesModule {}

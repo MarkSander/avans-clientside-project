@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Set } from '../set.model';
 import { SetService } from '../set.service';
+import { ISet } from '@avans-nx-workshop/shared/api';
 
 @Component({
   selector: 'avans-nx-project-app-setlist',
@@ -9,12 +10,19 @@ import { SetService } from '../set.service';
   styles: [],
 })
 export class SetlistComponent implements OnInit {
-  sets: Observable<Set[]> = new Observable<Set[]>();
+  sets: ISet[] | null = null;
+  subscription: Subscription | undefined = undefined;
 
   constructor(private setService: SetService) {}
 
   ngOnInit(): void {
-    console.log('setList aangeroepen');
-    this.sets = this.setService.getAllSets();
+    this.subscription = this.setService.list().subscribe((results) => {
+      console.log(`results: ${results}`);
+      this.sets = results;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }
