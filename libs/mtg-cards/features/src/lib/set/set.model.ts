@@ -4,8 +4,10 @@ import { Card } from '../card/card.model'; */
 
 export class Set {
   _id: string = '';
-  title: string = '';
-  cards: string = '';
+  name: string = '';
+  releasedate: Date = new Date();
+  cardsinset: string = '';
+  setcode: string = '';
   /*   cards: Array<Card> = [];
   boosters: Array<Booster> = [];
   boosterboxes: Array<BoosterBox> | undefined; */

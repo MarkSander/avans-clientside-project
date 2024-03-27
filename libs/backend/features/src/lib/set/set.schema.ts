@@ -9,10 +9,16 @@ export class Set {
   _id!: string;
 
   @Prop()
-  title!: string;
+  name!: string;
 
   @Prop()
-  cards!: string;
+  releasedate!: Date;
+
+  @Prop()
+  cardsinset!: number;
+
+  @Prop()
+  setcode!: string;
 }
 
 export const SetSchema = SchemaFactory.createForClass(Set);

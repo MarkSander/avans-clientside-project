@@ -12,17 +12,15 @@ export type SetId = string;
 
 export interface ISet {
   _id: SetId;
-  title: string;
-  cards: string;
-  //sort: MealSort;
-  // Naam van de persoon die de maaltijd aanmaakt en kookt.
-  //cook: User;
+  name: string;
+  releasedate: Date;
+  cardsinset: number;
+  setcode: string;
 }
 
 export type ICreateSet = Pick<
   ISet,
-  'title' | 'cards'
-  // | 'sort' | 'cook'
+  'name' | 'releasedate' | 'cardsinset' | 'setcode'
 >;
 export type IUpdateSet = Partial<Omit<ISet, 'id'>>;
 export type IUpsertSet = ISet;

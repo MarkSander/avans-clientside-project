@@ -14,16 +14,34 @@
     </div>
   </div>
 
-  <!-- https://getbootstrap.com/docs/5.1/content/tables/ -->
   <table class="table table-striped table-hover">
     <thead>
-      <th>Id</th>
+      <tr>
       <th>Name</th>
-      <th>Amount of Cards</th>
-      <th>Amount of Boosters</th>
-      <th>Amount of Boosterboxes</th>
+      <th>Release date</th>
+      <th>Total Cards in set</th>
+      <th>Code</th>
+      </tr>
     </thead>
     <tbody>
+      <div *ngIf="sets">
+        <div *ngFor="let set of sets">
+          <tr>
+          <td>
+            {{set.name}}
+          </td>
+          <td>
+            {{set.releasedate}}
+          </td>
+          <td>
+            {{set.cardsinset}}
+          </td>
+          <td>
+            {{set.setcode}}
+          </td>
+          </tr>
+        </div>
+      </div>
     </tbody>
   </table>
 </div>

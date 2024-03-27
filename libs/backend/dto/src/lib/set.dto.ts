@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-validator';
 import {
   ICreateSet,
   IUpdateSet,
@@ -13,37 +13,57 @@ import {
 export class CreateSetDto implements ICreateSet {
   @IsString()
   @IsNotEmpty()
-  title!: string;
+  name!: string;
 
   @IsString()
   @IsNotEmpty()
-  cards!: string;
+  releasedate!: Date;
+
+  @IsNumber()
+  @IsNotEmpty()
+  cardsinset!: number;
+
+  @IsString()
+  @IsNotEmpty()
+  setcode!: string;
 }
 
 export class UpsertSetDto implements IUpsertSet {
-  @IsString()
-  @IsNotEmpty()
-  title!: string;
-
   @IsString()
   @IsNotEmpty()
   _id!: string;
 
   @IsString()
   @IsNotEmpty()
-  cards!: string;
+  name!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  releasedate!: Date;
+
+  @IsNumber()
+  @IsNotEmpty()
+  cardsinset!: number;
+
+  @IsString()
+  @IsNotEmpty()
+  setcode!: string;
 }
 
 export class UpdateSetDto implements IUpdateSet {
   @IsString()
   @IsOptional()
-  title!: string;
+  name!: string;
 
   @IsString()
-  @IsOptional()
-  type!: string;
+  @IsNotEmpty()
+  releasedate!: Date;
+
+  @IsNumber()
+  @IsNotEmpty()
+  cardsinset!: number;
 
   @IsString()
-  @IsOptional()
-  cards!: string;
+  @IsNotEmpty()
+  setcode!: string;
 }
