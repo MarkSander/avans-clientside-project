@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardService } from './card.service';
 import { CardDetailComponent } from './card-detail/card-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
-/* import { CardEditComponent } from './card-edit/card-edit.component'; */
+import { CardEditComponent } from './card-edit/card-edit.component';
 
 const routes: Routes = [
   {
@@ -15,15 +15,20 @@ const routes: Routes = [
     component: CardListComponent,
   },
   {
+    path: 'new',
+    pathMatch: 'full',
+    component: CardEditComponent,
+  },
+  {
     path: ':id',
     pathMatch: 'full',
     component: CardDetailComponent,
   },
-  /*   {
+  {
     path: 'edit/:id',
     pathMatch: 'full',
     component: CardEditComponent,
-  }, */
+  },
 ];
 @NgModule({
   imports: [
@@ -32,8 +37,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
   ],
-  declarations: [CardListComponent],
+  declarations: [CardListComponent, CardEditComponent],
   providers: [CardService],
-  exports: [CardListComponent, RouterModule],
+  exports: [CardListComponent, CardEditComponent, RouterModule],
 })
 export class CardModule {}

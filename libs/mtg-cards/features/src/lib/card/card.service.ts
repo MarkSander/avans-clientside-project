@@ -77,6 +77,15 @@ export class CardService {
       .delete<ApiResponse<void>>(`${this.endpoint}/${id}`)
       .pipe(tap(console.log), catchError(this.handleError));
   }
+
+  public create(card: ICard) {
+    console.log(`create ${this.endpoint}`);
+    return this.http.post<ApiResponse<ICard>>(`${this.endpoint}`, card).pipe(
+      tap(console.log),
+      map((response: any) => response.results as ICard),
+      catchError(this.handleError)
+    );
+  }
   /**
    * Handle errors.
    */
