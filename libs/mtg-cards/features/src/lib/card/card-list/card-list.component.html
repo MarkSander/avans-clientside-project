@@ -1,5 +1,6 @@
 <div *ngFor="let card of cards">
+  <h2>Cardlist works</h2>
     <h2> {{card.title}}</h2>
     <p> {{card.type}}</p>
-    <p> *ngIf="{{card.legendary}}" Legendary</p>
+    <p *ngIf= card.foil>Foil</p>
 </div>

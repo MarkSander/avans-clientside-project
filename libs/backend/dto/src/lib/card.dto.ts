@@ -2,8 +2,8 @@ import {
   IsNotEmpty,
   IsString,
   IsBoolean,
-  IsOptional,
   IsNumber,
+  IsDate,
 } from 'class-validator';
 import {
   ICreateCard,
@@ -31,11 +31,15 @@ export class CreateCardDto implements ICreateCard {
 
   @IsBoolean()
   @IsNotEmpty()
-  legendary!: boolean;
+  foil!: boolean;
 
   @IsNumber()
   @IsNotEmpty()
   manacost!: number;
+
+  @IsDate()
+  @IsNotEmpty()
+  releasedate!: Date;
 }
 
 export class UpsertCardDto implements IUpsertCard {
@@ -45,7 +49,7 @@ export class UpsertCardDto implements IUpsertCard {
 
   @IsString()
   @IsNotEmpty()
-  id!: string;
+  _id!: string;
 
   @IsString()
   @IsNotEmpty()
@@ -57,23 +61,39 @@ export class UpsertCardDto implements IUpsertCard {
 
   @IsBoolean()
   @IsNotEmpty()
-  legendary!: boolean;
+  foil!: boolean;
 
   @IsNumber()
   @IsNotEmpty()
   manacost!: number;
+
+  @IsDate()
+  @IsNotEmpty()
+  releasedate!: Date;
 }
 
 export class UpdateCardDto implements IUpdateCard {
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   title!: string;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   type!: string;
 
+  @IsString()
+  @IsNotEmpty()
+  rarity!: string;
+
   @IsBoolean()
-  @IsOptional()
-  legendary!: boolean;
+  @IsNotEmpty()
+  foil!: boolean;
+
+  @IsNumber()
+  @IsNotEmpty()
+  manacost!: number;
+
+  @IsDate()
+  @IsNotEmpty()
+  releasedate!: Date;
 }

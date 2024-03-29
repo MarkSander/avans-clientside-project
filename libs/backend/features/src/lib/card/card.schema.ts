@@ -18,10 +18,13 @@ export class Card {
   rarity!: string;
 
   @Prop()
-  legendary!: boolean;
+  foil!: boolean;
 
   @Prop()
   manacost!: number;
+
+  @Prop()
+  releasedate!: Date;
 }
 
 export const CardSchema = SchemaFactory.createForClass(Card);
