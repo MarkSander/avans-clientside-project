@@ -18,7 +18,7 @@ export const httpOptions = {
  */
 @Injectable()
 export class CardService {
-  endpoint = 'http://localhost:6847/api/card';
+  endpoint = 'http://localhost:3000/api/card';
 
   constructor(private readonly http: HttpClient) {}
 

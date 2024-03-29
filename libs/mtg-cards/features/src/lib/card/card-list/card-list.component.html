@@ -1,6 +1,9 @@
 <div *ngFor="let card of cards">
-  <h2>Cardlist works</h2>
     <h2> {{card.title}}</h2>
-    <p> {{card.type}}</p>
-    <p *ngIf= card.foil>Foil</p>
+    <p>Card type: {{card.type}}</p>
+    <p>Foil: {{card.foil}}</p>
+    <p>Manacost: {{card.manacost}}</p>
+    <p>Rarity: {{card.rarity}}</p>
+
+    <p>Releasedate: {{card.releasedate}}</p>
 </div>
