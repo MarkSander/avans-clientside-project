@@ -19,6 +19,7 @@
       "@avans-nx-project/backend/features": [
         "libs/backend/features/src/index.ts"
       ],
+      "@avans-nx-project/backend/user": ["libs/backend/user/src/index.ts"],
       "@avans-nx-project/mtg-cards/common": [
         "libs/mtg-cards/common/src/index.ts"
       ],
