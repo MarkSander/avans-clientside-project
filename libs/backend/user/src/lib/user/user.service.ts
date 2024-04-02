@@ -28,26 +28,21 @@ export class UserService {
    *
    * @options options - optional URL queryparam options
    */
-  public list(options?: any): Observable<IUser[] | null> {
+  public list(): Observable<IUser[]> {
     console.log(`list ${this.endpoint}`);
 
-    return this.http
-      .get<ApiResponse<IUser[]>>(this.endpoint, {
-        ...options,
-        ...httpOptions,
-      })
-      .pipe(
-        map((response: any) => response.results as IUser[]),
-        tap(console.log),
-        catchError(this.handleError)
-      );
+    return this.http.get<ApiResponse<IUser[]>>(this.endpoint).pipe(
+      map((response: any) => response.results as IUser[]),
+      tap(console.log),
+      catchError(this.handleError)
+    );
   }
 
   /**
    * Get a single item from the service.
    *
    */
-  public read(id: string | null, options?: any): Observable<IUser> {
+  public getOne(id: string | null, options?: any): Observable<IUser> {
     console.log(`read ${this.endpoint}`);
     return this.http
       .get<ApiResponse<IUser>>(`${this.endpoint}/${id}`, {
