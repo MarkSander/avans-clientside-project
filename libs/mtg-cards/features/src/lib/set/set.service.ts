@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, ISet } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
@@ -19,7 +20,8 @@ export const httpOptions = {
  */
 @Injectable()
 export class SetService {
-  endpoint = 'http://localhost:3000/api/set';
+  endpoint = environment.apiUrl + 'api/set';
+  //endpoint = 'http://localhost:3000/api/set';
 
   constructor(private readonly http: HttpClient) {}
 

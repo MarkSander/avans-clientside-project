@@ -1,7 +1,15 @@
 <form [formGroup]="form" (ngSubmit)="OnSubmit()" enctype="multipart/form-data">
   <div>
-    <p>Deck Title: </p>
-    <input type="text" name="title" id="decktitle" formControlName="title">
-    <input>
+    <label>Deck Name: </label>
+    <input type="text" name="name" id="deckname" formControlName="name">
+    <label>Deck Format: </label>
+    <select formControlName="format" class="form-control">
+      <option *ngFor="let option of keys(options)" [ngValue]="option">{{option}}</option>
+  </select>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">
+      Save
+    </button>
   </div>
 </form>

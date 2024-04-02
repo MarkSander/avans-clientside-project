@@ -1,5 +1,7 @@
 import { IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-validator';
 import {
+  DeckFormat,
+  ICard,
   ICreateDeck,
   IUpdateDeck,
   IUpsertDeck,
@@ -13,45 +15,45 @@ import {
 export class CreateDeckDto implements ICreateDeck {
   @IsString()
   @IsNotEmpty()
-  title!: string;
+  name!: string;
 
   @IsString()
   @IsNotEmpty()
-  type!: string;
+  format!: DeckFormat;
 
   @IsString()
   @IsNotEmpty()
-  set!: string;
+  userId!: string;
 
-  @IsNumber()
   @IsNotEmpty()
-  price!: number;
+  cards!: ICard[];
 }
 
 export class UpsertDeckDto implements IUpsertDeck {
   @IsString()
   @IsNotEmpty()
-  title!: string;
+  name!: string;
 
   @IsString()
   @IsNotEmpty()
-  id!: string;
+  _id!: string;
+
+  @IsNotEmpty()
+  format!: DeckFormat;
 
   @IsString()
   @IsNotEmpty()
-  set!: string;
+  userId!: string;
 
-  @IsNumber()
   @IsNotEmpty()
-  price!: number;
+  cards!: ICard[];
 }
 
 export class UpdateDeckDto implements IUpdateDeck {
   @IsString()
   @IsOptional()
-  title!: string;
+  name!: string;
 
-  @IsNumber()
   @IsOptional()
-  price!: number;
+  format!: DeckFormat;
 }

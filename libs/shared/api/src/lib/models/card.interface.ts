@@ -1,5 +1,6 @@
 //import { Id } from './id.type';
-export type Id = string;
+
+import { Id } from './user.interface';
 
 export interface ICard {
   _id: Id;

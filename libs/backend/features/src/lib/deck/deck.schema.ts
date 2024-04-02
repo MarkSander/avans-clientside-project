@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
+import { Card } from '../card/card.schema';
 
 export type DeckDocument = HydratedDocument<Deck>;
 
@@ -9,13 +10,16 @@ export class Deck {
   _id!: string;
 
   @Prop({ required: true })
-  title!: string;
+  name!: string;
 
   @Prop()
-  set!: string;
+  format!: string;
 
   @Prop()
-  price!: number;
+  userId!: string;
+
+  @Prop()
+  cards!: Card[];
 }
 
 export const DeckSchema = SchemaFactory.createForClass(Deck);

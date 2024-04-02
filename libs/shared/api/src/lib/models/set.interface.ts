@@ -1,17 +1,7 @@
-//import { Id } from './id.type';
-export type SetId = string;
-/* export enum CardSort {
-  Breakfast = 'Breakfast',
-  Lunch = 'Lunch',
-  Dinner = 'Dinner',
-  Other = 'Other',
-} */
-
-// Voor nu is onze user een string; later zullen we hier een User object van maken.
-//type User = string;
+import { Id } from './user.interface';
 
 export interface ISet {
-  _id: SetId;
+  _id: Id;
   name: string;
   releasedate: Date;
   cardsinset: number;

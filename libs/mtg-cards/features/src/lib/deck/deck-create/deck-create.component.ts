@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DeckService } from '../deck.service';
-import { IDeck } from '@avans-nx-workshop/shared/api';
+import { IDeck, DeckFormat } from '@avans-nx-workshop/shared/api';
 /* import { Subscription } from 'rxjs'; */
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'avans-nx-project-deck-create',
@@ -14,18 +14,20 @@ export class DeckCreateComponent implements OnInit {
   /*   subscription: Subscription | undefined = undefined;
    */
   form!: FormGroup;
+  keys = Object.keys;
+  options = DeckFormat;
 
   constructor(
     private deckService: DeckService,
+    private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      title: ['', Validators.required],
-      set: ['', Validators.required],
-      price: [0, Validators.required],
+      name: ['', Validators.required],
+      format: ['', Validators.required],
     });
   }
   OnSubmit() {
@@ -37,7 +39,7 @@ export class DeckCreateComponent implements OnInit {
       };
       this.deckService.create(newDeck).subscribe(
         () => {
-          this.router.navigateByUrl('./decks');
+          this.router.navigate(['../'], { relativeTo: this.route });
         },
         (error) => {
           throw new Error(`Error creating deck: ${error}`);

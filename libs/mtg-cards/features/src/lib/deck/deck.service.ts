@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IDeck } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
@@ -18,7 +20,8 @@ export const httpOptions = {
  */
 @Injectable()
 export class DeckService {
-  endpoint = 'http://localhost:3000/api/deck';
+  endpoint = environment + 'api/deck';
+  //endpoint = 'http://localhost:3000/api/deck';
 
   constructor(private readonly http: HttpClient) {}
 

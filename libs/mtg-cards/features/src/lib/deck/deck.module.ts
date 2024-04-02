@@ -16,15 +16,16 @@ const routes: Routes = [
     component: DeckListComponent,
   },
   {
-    path: ':id',
-    pathMatch: 'full',
-    component: DeckDetailComponent,
-  },
-  {
     path: 'create',
     pathMatch: 'full',
     component: DeckCreateComponent,
   },
+  {
+    path: ':id',
+    pathMatch: 'full',
+    component: DeckDetailComponent,
+  },
+
   /*   {
     path: 'edit/:id',
     pathMatch: 'full',

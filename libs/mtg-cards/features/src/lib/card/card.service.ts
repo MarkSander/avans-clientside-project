@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, ICard } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
@@ -18,7 +19,8 @@ export const httpOptions = {
  */
 @Injectable()
 export class CardService {
-  endpoint = 'http://localhost:3000/api/card';
+  endpoint = environment + 'api/card';
+  //endpoint = 'http://localhost:3000/api/card';
 
   constructor(private readonly http: HttpClient) {}
 
