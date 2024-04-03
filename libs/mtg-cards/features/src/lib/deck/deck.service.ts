@@ -2,7 +2,7 @@
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, IDeck, IUpdateDeck } from '@avans-nx-workshop/shared/api';
+import { ApiResponse, IDeck } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
