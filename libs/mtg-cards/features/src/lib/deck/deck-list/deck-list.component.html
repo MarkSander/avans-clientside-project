@@ -1,9 +1,11 @@
 <div *ngFor="let deck of decks">
-  <a [routerLink]="[deck._id]">
-    <h2> {{deck.name}}</h2>
+    <a [routerLink]="[deck._id]">
+      <h2> {{deck.name}}</h2>
     </a>
-    <p> {{deck.format}}</p>
-    <p> {{deck.cards}}</p>
+      <h3> {{deck.format}}</h3>
+    <div *ngFor="let card of deck.cards">
+      <p>{{card.title}}</p>
+    </div>
 </div>
 <button routerLink="create">
   New Deck

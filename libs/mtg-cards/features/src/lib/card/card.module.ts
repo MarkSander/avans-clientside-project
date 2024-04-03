@@ -7,6 +7,7 @@ import { CardService } from './card.service';
 import { CardDetailComponent } from './card-detail/card-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardEditComponent } from './card-edit/card-edit.component';
+import { DeckService } from '../deck/deck.service';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'new',
     pathMatch: 'full',
     component: CardEditComponent,
+  },
+  {
+    path: 'deck/:id',
+    pathMatch: 'full',
+    component: CardListComponent,
   },
   {
     path: ':id',
@@ -38,7 +44,7 @@ const routes: Routes = [
     ReactiveFormsModule,
   ],
   declarations: [CardListComponent, CardEditComponent],
-  providers: [CardService],
+  providers: [CardService, DeckService],
   exports: [CardListComponent, CardEditComponent, RouterModule],
 })
 export class CardModule {}

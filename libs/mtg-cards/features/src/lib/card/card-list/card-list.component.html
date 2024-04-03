@@ -1,3 +1,6 @@
+<div *ngIf="deckId">
+  <p>Add Card to deck: {{deck.name}}</p>
+</div>
 <div *ngFor="let card of cards">
     <h2> {{card.title}}</h2>
     <p>Card type: {{card.type}}</p>
@@ -5,4 +8,5 @@
     <p>Manacost: {{card.manacost}}</p>
     <p>Rarity: {{card.rarity}}</p>
     <p>Releasedate: {{card.releasedate | date: 'shortDate'}}</p>
+    <button (click)="AddToDeck(card)" *ngIf="deckId">Add to Deck</button>
 </div>
