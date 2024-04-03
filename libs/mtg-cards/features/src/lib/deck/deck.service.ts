@@ -2,7 +2,7 @@
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, IDeck } from '@avans-nx-workshop/shared/api';
+import { ApiResponse, IDeck, IUpdateDeck } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
@@ -20,7 +20,7 @@ export const httpOptions = {
  */
 @Injectable()
 export class DeckService {
-  endpoint = environment + 'api/deck';
+  endpoint = environment.apiUrl + 'api/deck';
   //endpoint = 'http://localhost:3000/api/deck';
 
   constructor(private readonly http: HttpClient) {}
@@ -52,7 +52,7 @@ export class DeckService {
   public read(id: string | null, options?: any): Observable<IDeck> {
     console.log(`read ${this.endpoint}`);
     return this.http
-      .get<ApiResponse<IDeck>>(this.endpoint, {
+      .get<ApiResponse<IDeck>>(`${this.endpoint}/${id}`, {
         ...options,
         ...httpOptions,
       })
@@ -63,10 +63,13 @@ export class DeckService {
       );
   }
 
-  public edit(id: string) {
-    console.log(`edit ${this.endpoint}`);
+  public edit(deck: IDeck, options?: any) {
+    console.log(`edit ${this.endpoint}/${deck._id}`);
     return this.http
-      .put<ApiResponse<IDeck>>(`${this.endpoint}/${id}`, httpOptions)
+      .put<ApiResponse<IDeck>>(`${this.endpoint}/${deck._id}`, deck, {
+        ...options,
+        ...httpOptions,
+      })
       .pipe(
         tap(console.log),
         map((response: any) => response.results as IDeck),

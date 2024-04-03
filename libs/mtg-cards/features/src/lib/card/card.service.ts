@@ -19,7 +19,7 @@ export const httpOptions = {
  */
 @Injectable()
 export class CardService {
-  endpoint = environment + 'api/card';
+  endpoint = environment.apiUrl + 'api/card';
   //endpoint = 'http://localhost:3000/api/card';
 
   constructor(private readonly http: HttpClient) {}

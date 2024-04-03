@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { DeckService } from './deck.service';
 import { Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
-import { CreateDeckDto } from '@avans-nx-project/backend/dto';
+import { CreateDeckDto, UpdateDeckDto } from '@avans-nx-project/backend/dto';
 import { Deck } from './deck.schema';
 @Controller('deck')
 export class DeckController {
@@ -23,8 +23,11 @@ export class DeckController {
   }
 
   @Put(':id')
-  put(@Body() data: Deck): Promise<Deck | null> {
-    return this.deckService.updateDeck(data);
+  put(
+    @Param('id') id: string,
+    @Body() data: UpdateDeckDto
+  ): Promise<Deck | null> {
+    return this.deckService.updateDeck(id, data);
   }
 
   @Delete(':id')

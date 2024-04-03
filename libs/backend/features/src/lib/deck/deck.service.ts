@@ -3,7 +3,7 @@ import { Logger } from '@nestjs/common';
 import { Deck } from './deck.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
-import { CreateDeckDto } from '@avans-nx-project/backend/dto';
+import { CreateDeckDto, UpdateDeckDto } from '@avans-nx-project/backend/dto';
 
 @Injectable()
 export class DeckService {
@@ -35,12 +35,12 @@ export class DeckService {
     return createdDeck.save();
   }
 
-  async updateDeck(newDeck: Deck): Promise<Deck | null> {
-    const updateDeck = newDeck;
-
+  async updateDeck(id: string, newDeck: UpdateDeckDto): Promise<Deck | null> {
+    Logger.log(`updating card with ${id}`);
+    Logger.log(newDeck);
     try {
       const updatedDeck = await this.deckModel
-        .findByIdAndUpdate(updateDeck._id, updateDeck)
+        .findByIdAndUpdate(id, newDeck, { new: true })
         .exec();
       return updatedDeck ?? null;
     } catch (error) {

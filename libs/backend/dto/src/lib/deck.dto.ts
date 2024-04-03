@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
 import {
   DeckFormat,
   ICard,
@@ -50,6 +50,10 @@ export class UpsertDeckDto implements IUpsertDeck {
 }
 
 export class UpdateDeckDto implements IUpdateDeck {
+  @IsString()
+  @IsNotEmpty()
+  _id!: string;
+
   @IsString()
   @IsOptional()
   name!: string;

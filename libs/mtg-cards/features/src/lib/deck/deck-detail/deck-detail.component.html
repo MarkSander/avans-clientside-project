@@ -1,10 +1,9 @@
-<div class="component detail">
+<div class="component detail" *ngIf="deck">
   <div class="row">
-    <div class="col-8"></div>
+<!--     <div class="col-8"></div> -->
     <div class="col-4">
       <a
         class="btn btn-primary btn-sm float-right"
-        href="#"
         role="button"
         routerLink="edit"
         >Edit</a
@@ -16,6 +15,12 @@
         >Delete</a>
     </div>
   </div>
+  <h1>{{deck.name}}</h1>
+  <h2>{{deck.format}}</h2>
+  <div *ngIf="deck.cards.length === 0">
+    <h2>Deck has no cards yet</h2>
+  </div>
+  <h2>{{deck.cards}}</h2>
 
 <!--   <h1>{{ card.title}}</h1>
   <p>Type: {{ card.type}}</p>
