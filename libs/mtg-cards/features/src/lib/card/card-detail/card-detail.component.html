@@ -21,7 +21,8 @@
   <p>Type: {{ card.type}}</p>
   <p>Rarity: {{ card.rarity}}</p>
   <p>Manacost: {{ card.manacost}}</p>
-  <p>Foil: {{ card.foil}}</p>
+  <p *ngIf="card.foil">Foil: Yes</p>
+  <p *ngIf="!card.foil">Foil: No</p>
   <p>Releasedate: {{card.releasedate | date: 'shortDate'}}</p>
 </div>
 </div>
