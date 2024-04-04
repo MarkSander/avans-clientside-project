@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../card.service';
-import { ICard } from '@avans-nx-workshop/shared/api';
+import { CardRarity, CardTypes, ICard } from '@avans-nx-workshop/shared/api';
 import { Subscription, first } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,6 +15,9 @@ export class CardEditComponent implements OnInit, OnDestroy {
   id: string | null = null;
   form!: FormGroup;
   addMode!: boolean;
+  keys = Object.keys;
+  typeOptions = CardTypes;
+  rarityOptions = CardRarity;
 
   constructor(
     private cardService: CardService,

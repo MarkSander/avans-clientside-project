@@ -8,13 +8,17 @@
     </div>
     <div class="form-group col">
       <label>Type</label>
-      <input type="text" formControlName="type">
+      <select formControlName="type" class="form-control">
+        <option *ngFor="let option of keys(typeOptions)" [ngValue]="option">{{option}}</option>
+      </select>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col">
       <label>Rarity</label>
-      <input type="text" formControlName="rarity">
+      <select formControlName="rarity" class="form-control">
+        <option *ngFor="let option of keys(rarityOptions)" [ngValue]="option">{{option}}</option>
+      </select>
     </div>
     <div>
       <label>Foil</label>

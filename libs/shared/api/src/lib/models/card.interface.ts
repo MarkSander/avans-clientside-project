@@ -2,11 +2,25 @@
 
 import { Id } from './user.interface';
 
+export enum CardTypes {
+  Creature = 'Creature',
+  Land = 'Land',
+  Enchantment = 'Enchantment',
+  Arifact = 'Artifact',
+}
+
+export enum CardRarity {
+  Mythic = 'Mythic',
+  Rare = 'Rare',
+  Uncommon = 'Uncommon',
+  Common = 'Common',
+}
+
 export interface ICard {
   _id: Id;
   title: string;
-  type: string;
-  rarity: string;
+  type: CardTypes;
+  rarity: CardRarity;
   foil: boolean;
   manacost: number;
   releasedate: Date;

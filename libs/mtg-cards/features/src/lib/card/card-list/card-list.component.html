@@ -1,14 +1,16 @@
 <div *ngIf="deckId">
   <p>Add Card to deck: {{deck.name}}</p>
 </div>
+<a
+class="btn btn-primary btn-sm float-right"
+role="button"
+routerLink="new"
+>Create New Card</a>
 <div *ngFor="let card of cards">
   <a [routerLink]="[card._id]">
     <h2> {{card.title}}</h2>
   </a>
     <p>Card type: {{card.type}}</p>
-    <p>Foil: {{card.foil}}</p>
-    <p>Manacost: {{card.manacost}}</p>
-    <p>Rarity: {{card.rarity}}</p>
-    <p>Releasedate: {{card.releasedate | date: 'shortDate'}}</p>
+
     <button (click)="AddToDeck(card)" *ngIf="deckId">Add to Deck</button>
 </div>

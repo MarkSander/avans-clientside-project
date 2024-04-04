@@ -6,6 +6,8 @@ import {
   IsDate,
 } from 'class-validator';
 import {
+  CardRarity,
+  CardTypes,
   ICreateCard,
   IUpdateCard,
   IUpsertCard,
@@ -23,11 +25,11 @@ export class CreateCardDto implements ICreateCard {
 
   @IsString()
   @IsNotEmpty()
-  type!: string;
+  type!: CardTypes;
 
   @IsString()
   @IsNotEmpty()
-  rarity!: string;
+  rarity!: CardRarity;
 
   @IsBoolean()
   @IsNotEmpty()
@@ -53,11 +55,11 @@ export class UpsertCardDto implements IUpsertCard {
 
   @IsString()
   @IsNotEmpty()
-  type!: string;
+  type!: CardTypes;
 
   @IsString()
   @IsNotEmpty()
-  rarity!: string;
+  rarity!: CardRarity;
 
   @IsBoolean()
   @IsNotEmpty()
@@ -83,11 +85,11 @@ export class UpdateCardDto implements IUpdateCard {
 
   @IsString()
   @IsNotEmpty()
-  type!: string;
+  type!: CardTypes;
 
   @IsString()
   @IsNotEmpty()
-  rarity!: string;
+  rarity!: CardRarity;
 
   @IsBoolean()
   @IsNotEmpty()

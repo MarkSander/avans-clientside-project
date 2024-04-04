@@ -22,6 +22,6 @@
   <p>Rarity: {{ card.rarity}}</p>
   <p>Manacost: {{ card.manacost}}</p>
   <p>Foil: {{ card.foil}}</p>
-  <p>Releasedate: {{card.releasedate}}</p>
+  <p>Releasedate: {{card.releasedate | date: 'shortDate'}}</p>
 </div>
 </div>
