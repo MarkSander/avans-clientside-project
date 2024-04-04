@@ -1,10 +1,10 @@
+<div *ngIf="card">
 <div class="component detail">
   <div class="row">
     <div class="col-8"></div>
     <div class="col-4">
       <a
         class="btn btn-primary btn-sm float-right"
-        href="#"
         role="button"
         routerLink="edit"
         >Edit</a
@@ -12,14 +12,16 @@
        <a
         class="btn btn-primary btn-sm float-right"
         role="button"
-        (click)="deleteCard()"
+        (click)="DeleteCard()"
         >Delete</a>
     </div>
   </div>
 
-<!--   <h1>{{ card.title}}</h1>
+  <h1>{{ card.title}}</h1>
   <p>Type: {{ card.type}}</p>
   <p>Rarity: {{ card.rarity}}</p>
   <p>Manacost: {{ card.manacost}}</p>
-  <p>Price: {{ card.price}}</p> -->
+  <p>Foil: {{ card.foil}}</p>
+  <p>Releasedate: {{card.releasedate}}</p>
+</div>
 </div>

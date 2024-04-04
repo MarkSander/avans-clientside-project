@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
@@ -51,7 +52,7 @@ export class CardService {
   public read(id: string | null, options?: any): Observable<ICard> {
     console.log(`read ${this.endpoint}`);
     return this.http
-      .get<ApiResponse<ICard>>(this.endpoint, {
+      .get<ApiResponse<ICard>>(`${this.endpoint}/${id}`, {
         ...options,
         ...httpOptions,
       })
@@ -62,10 +63,13 @@ export class CardService {
       );
   }
 
-  public edit(id: string) {
-    console.log(`edit ${this.endpoint}`);
+  public edit(card: ICard, options?: any) {
+    console.log(`edit ${this.endpoint}/${card._id}`);
     return this.http
-      .put<ApiResponse<ICard>>(`${this.endpoint}/${id}`, httpOptions)
+      .put<ApiResponse<ICard>>(`${this.endpoint}/${card._id}`, card, {
+        ...options,
+        ...httpOptions,
+      })
       .pipe(
         tap(console.log),
         map((response: any) => response.results as ICard),
@@ -74,7 +78,7 @@ export class CardService {
   }
 
   public delete(id: string) {
-    console.log(`delete ${this.endpoint}`);
+    console.log(`delete ${this.endpoint}/${id}`);
     return this.http
       .delete<ApiResponse<void>>(`${this.endpoint}/${id}`)
       .pipe(tap(console.log), catchError(this.handleError));

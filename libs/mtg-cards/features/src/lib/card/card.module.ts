@@ -26,14 +26,14 @@ const routes: Routes = [
     component: CardListComponent,
   },
   {
+    path: ':id/edit',
+    pathMatch: 'full',
+    component: CardEditComponent,
+  },
+  {
     path: ':id',
     pathMatch: 'full',
     component: CardDetailComponent,
-  },
-  {
-    path: 'edit/:id',
-    pathMatch: 'full',
-    component: CardEditComponent,
   },
 ];
 @NgModule({
@@ -43,8 +43,13 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
   ],
-  declarations: [CardListComponent, CardEditComponent],
+  declarations: [CardListComponent, CardEditComponent, CardDetailComponent],
   providers: [CardService, DeckService],
-  exports: [CardListComponent, CardEditComponent, RouterModule],
+  exports: [
+    CardListComponent,
+    CardEditComponent,
+    CardDetailComponent,
+    RouterModule,
+  ],
 })
 export class CardModule {}

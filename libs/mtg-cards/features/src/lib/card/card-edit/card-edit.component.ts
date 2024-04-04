@@ -28,6 +28,7 @@ export class CardEditComponent implements OnInit, OnDestroy {
     this.addMode = !this.id;
 
     this.form = this.formBuilder.group({
+      _id: this.id,
       title: ['', Validators.required],
       type: ['', Validators.required],
       rarity: ['', Validators.required],
@@ -48,7 +49,7 @@ export class CardEditComponent implements OnInit, OnDestroy {
     if (this.subscription) this.subscription.unsubscribe();
   }
 
-  public onSubmit() {
+  public OnSubmit() {
     // If foil checkbox is not checked, set foil to false
     if (!this.form.value.foil) {
       this.form.patchValue({ foil: false });
@@ -77,6 +78,16 @@ export class CardEditComponent implements OnInit, OnDestroy {
       });
   }
   private editCard() {
-    console.log('Editing card...');
+    this.cardService
+      .edit(this.form.value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.router.navigate(['../'], { relativeTo: this.route });
+        },
+        error: (error) => {
+          console.log(`Error editing card: ` + error);
+        },
+      });
   }
 }

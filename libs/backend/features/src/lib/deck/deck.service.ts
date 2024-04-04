@@ -36,7 +36,7 @@ export class DeckService {
   }
 
   async updateDeck(id: string, newDeck: UpdateDeckDto): Promise<Deck | null> {
-    Logger.log(`updating card with ${id}`);
+    Logger.log(`updating deck with ${id}`);
     Logger.log(newDeck);
     try {
       const updatedDeck = await this.deckModel

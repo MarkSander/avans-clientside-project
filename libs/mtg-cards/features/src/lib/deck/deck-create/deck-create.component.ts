@@ -93,7 +93,7 @@ export class DeckCreateComponent implements OnInit {
           this.router.navigate(['../'], { relativeTo: this.route });
         },
         error: (error) => {
-          console.log(`Error editing card: ` + error);
+          console.log(`Error editing deck: ` + error);
         },
       });
   }

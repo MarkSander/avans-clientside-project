@@ -2,7 +2,9 @@
   <p>Add Card to deck: {{deck.name}}</p>
 </div>
 <div *ngFor="let card of cards">
+  <a [routerLink]="[card._id]">
     <h2> {{card.title}}</h2>
+  </a>
     <p>Card type: {{card.type}}</p>
     <p>Foil: {{card.foil}}</p>
     <p>Manacost: {{card.manacost}}</p>

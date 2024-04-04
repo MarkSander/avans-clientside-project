@@ -75,6 +75,10 @@ export class UpsertCardDto implements IUpsertCard {
 export class UpdateCardDto implements IUpdateCard {
   @IsString()
   @IsNotEmpty()
+  _id!: string;
+
+  @IsString()
+  @IsNotEmpty()
   title!: string;
 
   @IsString()

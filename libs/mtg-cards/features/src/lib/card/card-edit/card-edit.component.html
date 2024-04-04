@@ -1,6 +1,6 @@
 <h2 *ngIf="addMode">New card</h2>
 <h2 *ngIf="!addMode">Edit card</h2>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="OnSubmit()">
   <div class="form-row">
     <div class="form-group col">
       <label>Title</label>
@@ -35,6 +35,6 @@
     <button class="btn btn-primary">
       Save
     </button>
-    <a routerLink="/cards" class="btn btn-link">Cancel</a>
+    <a routerLink="../" class="btn btn-link">Cancel</a>
   </div>
 </form>

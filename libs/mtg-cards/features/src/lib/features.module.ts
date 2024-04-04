@@ -4,15 +4,14 @@ import { CommonModule } from '@angular/common';
 //import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardService } from './card/card.service';
-import { CardDetailComponent } from './card/card-detail/card-detail.component';
 import { NavComponent } from './nav/nav.component';
 import { SetService } from './set/set.service';
 import { DeckService } from './deck/deck.service';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, CardDetailComponent, NavComponent],
+  imports: [CommonModule, HttpClientModule, NavComponent],
   // declarations: [AboutComponent],
   providers: [CardService, SetService, DeckService],
-  exports: [CardDetailComponent, NavComponent],
+  exports: [NavComponent],
 })
 export class FeaturesModule {}

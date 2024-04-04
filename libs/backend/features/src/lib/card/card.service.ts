@@ -5,7 +5,7 @@ import { Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Card } from './card.schema';
 import mongoose, { Model } from 'mongoose';
-import { CreateCardDto } from '@avans-nx-project/backend/dto';
+import { CreateCardDto, UpdateCardDto } from '@avans-nx-project/backend/dto';
 
 @Injectable()
 export class CardService {
@@ -54,11 +54,12 @@ export class CardService {
     return createdCard.save();
   }
 
-  async updateCard(newCard: Card): Promise<Card | null> {
-    const updateCard = newCard;
+  async updateCard(id: string, newCard: UpdateCardDto): Promise<Card | null> {
+    Logger.log(`updating card with ${id}`);
+    Logger.log(newCard);
     try {
       const updatedCard = await this.cardModel
-        .findByIdAndUpdate(updateCard._id, updateCard)
+        .findByIdAndUpdate(id, newCard)
         .exec();
       return updatedCard ?? null;
     } catch (error) {
