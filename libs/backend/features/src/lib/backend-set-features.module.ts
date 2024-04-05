@@ -7,7 +7,7 @@ import { Set, SetSchema } from './set/set.schema';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://mongo:eb3BCb445Deegba2g55hh454-G2C5Ga1@monorail.proxy.rlwy.net:41390'
+      'mongodb://mongo:eb3BCb445Deegba2g55hh454-G2C5Ga1@mongodb.railway.internal:27017'
     ),
     MongooseModule.forFeature([{ name: Set.name, schema: SetSchema }]),
   ],
