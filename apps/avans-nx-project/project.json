@@ -43,6 +43,11 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {"replace": "libs/mtg-cards/features/src/environments/environment.ts",
+            "with": "libs/mtg-cards/features/src/environments/environment.prod.ts"
+          }
+          ],
           "outputHashing": "all"
         },
         "development": {
