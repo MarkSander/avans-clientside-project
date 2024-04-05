@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SetController } from './set/set.controller';
 import { SetService } from './set/set.service';
 import { Set, SetSchema } from './set/set.schema';
-import { mongourl } from '../mongo_environment';
+import { mongourl } from '../mongo_environment.prod';
 
 @Module({
   imports: [

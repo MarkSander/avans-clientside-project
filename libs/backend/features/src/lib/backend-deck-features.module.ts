@@ -3,7 +3,7 @@ import { DeckController } from './deck/deck.controller';
 import { DeckService } from './deck/deck.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Deck, DeckSchema } from './deck/deck.schema';
-import { mongourl } from '../mongo_environment';
+import { mongourl } from '../mongo_environment.prod';
 
 @Module({
   imports: [
