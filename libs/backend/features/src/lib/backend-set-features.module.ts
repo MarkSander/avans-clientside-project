@@ -3,11 +3,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SetController } from './set/set.controller';
 import { SetService } from './set/set.service';
 import { Set, SetSchema } from './set/set.schema';
+import { mongourl } from '../mongo_environment';
 
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://mongo:iNRVUYoKmbgjVKZkGZIYLaHwHFzdxnvi@mongodb.railway.internal:27017'
+      //'mongodb://mongo:iNRVUYoKmbgjVKZkGZIYLaHwHFzdxnvi@mongodb.railway.internal:27017'
+      mongourl.dbUrl
     ),
     MongooseModule.forFeature([{ name: Set.name, schema: SetSchema }]),
   ],

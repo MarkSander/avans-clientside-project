@@ -3,12 +3,14 @@ import { DeckController } from './deck/deck.controller';
 import { DeckService } from './deck/deck.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Deck, DeckSchema } from './deck/deck.schema';
+import { mongourl } from '../mongo_environment';
 
 @Module({
   imports: [
     //MongooseModule.forRoot('mongodb://localhost:27017/mtg-website'),
     MongooseModule.forRoot(
-      'mongodb://mongo:iNRVUYoKmbgjVKZkGZIYLaHwHFzdxnvi@mongodb.railway.internal:27017'
+      //'mongodb://mongo:iNRVUYoKmbgjVKZkGZIYLaHwHFzdxnvi@mongodb.railway.internal:27017'
+      mongourl.dbUrl
     ),
     MongooseModule.forFeature([{ name: Deck.name, schema: DeckSchema }]),
   ],
