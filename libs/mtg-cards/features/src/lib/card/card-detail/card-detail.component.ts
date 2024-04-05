@@ -39,6 +39,18 @@ export class CardDetailComponent implements OnInit, OnDestroy {
   }
   DeleteCard() {
     this.DeleteCardFromDecks();
+
+    this.cardService
+      .delete(this.cardId)
+      .pipe()
+      .subscribe({
+        next: () => {
+          this.router.navigate(['../'], { relativeTo: this.route });
+        },
+        error: (error) => {
+          console.log(`Error deleting card: ` + error);
+        },
+      });
   }
 
   DeleteCardFromDecks() {
@@ -74,18 +86,6 @@ export class CardDetailComponent implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.error('Error in DeleteCardFromDecks:', error);
-      });
-
-    this.cardService
-      .delete(this.cardId)
-      .pipe()
-      .subscribe({
-        next: () => {
-          this.router.navigate(['../'], { relativeTo: this.route });
-        },
-        error: (error) => {
-          console.log(`Error deleting card: ` + error);
-        },
       });
   }
 
