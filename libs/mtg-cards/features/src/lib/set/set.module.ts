@@ -36,6 +36,11 @@ const routes: Routes = [
     HttpClientModule,
   ],
   providers: [SetService],
-  exports: [RouterModule, SetlistComponent, SetDetailComponent],
+  exports: [
+    RouterModule,
+    SetlistComponent,
+    SetDetailComponent,
+    SetEditComponent,
+  ],
 })
 export class SetModule {}

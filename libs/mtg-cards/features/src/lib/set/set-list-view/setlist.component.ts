@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { Set } from '../set.model';
+import { Subscription } from 'rxjs';
 import { SetService } from '../set.service';
 import { ISet } from '@avans-nx-workshop/shared/api';
 
