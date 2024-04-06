@@ -71,5 +71,17 @@ export class SetEditComponent implements OnInit, OnDestroy {
       });
   }
 
-  private editSet() {}
+  private editSet() {
+    this.setService
+      .edit(this.form.value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.router.navigate(['../'], { relativeTo: this.route });
+        },
+        error: (error) => {
+          console.log(`Error editing set: ${error}`);
+        },
+      });
+  }
 }
