@@ -24,6 +24,7 @@ export interface ICard {
   foil: boolean;
   manacost: number;
   releasedate: Date;
+  //setId
 }
 
 export type ICreateCard = Pick<

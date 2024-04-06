@@ -3,24 +3,29 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SetEditComponent } from './set-edit-view/set-edit-view.component';
 import { SetlistComponent } from './set-list-view/setlist.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SetService } from './set.service';
 import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', component: SetlistComponent },
+  {
+    path: 'new',
+    pathMatch: 'full',
+    component: SetEditComponent,
+  },
   {
     path: ':id/edit',
     pathMatch: 'full',
     component: SetEditComponent,
   },
-  { path: '', pathMatch: 'full', component: SetlistComponent },
 ];
 
 @NgModule({
   declarations: [SetlistComponent, SetEditComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     HttpClientModule,
   ],

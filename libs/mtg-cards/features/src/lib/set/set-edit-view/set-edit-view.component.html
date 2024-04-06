@@ -1,0 +1,30 @@
+<h2 *ngIf="addMode">New Set</h2>
+<h2 *ngIf="!addMode">Edit Set</h2>
+<form [formGroup]="form" (ngSubmit)="OnSubmit()">
+  <div class="form-row">
+    <div class="form-group col">
+      <label>Title</label>
+      <input type="text" formControlName="name" class="form-control">
+    </div>
+    <div class="form-group col">
+      <label>SetCode</label>
+      <input type="text" formControlName="setcode" class="form-control">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label>Cards in set</label>
+      <input type="number" formControlName="cardsinset">
+    </div>
+    <div>
+      <label>Releasedate</label>
+      <input type="date" formControlName="releasedate">
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">
+      Save
+    </button>
+    <a routerLink="../" class="btn btn-link">Cancel</a>
+  </div>
+</form>

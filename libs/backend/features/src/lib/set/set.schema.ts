@@ -8,7 +8,7 @@ export class Set {
   @Prop({ type: mongoose.Schema.Types.ObjectId })
   _id!: string;
 
-  @Prop()
+  @Prop({ required: true })
   name!: string;
 
   @Prop()

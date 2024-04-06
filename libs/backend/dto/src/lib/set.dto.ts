@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsOptional,
+  IsNumber,
+  IsDate,
+} from 'class-validator';
 import {
   ICreateSet,
   IUpdateSet,
@@ -15,7 +21,7 @@ export class CreateSetDto implements ICreateSet {
   @IsNotEmpty()
   name!: string;
 
-  @IsString()
+  @IsDate()
   @IsNotEmpty()
   releasedate!: Date;
 

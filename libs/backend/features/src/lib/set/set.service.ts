@@ -30,6 +30,7 @@ export class SetService {
   }
 
   async createSet(createSetDto: CreateSetDto): Promise<Set> {
+    Logger.log('create', this.TAG);
     const createdSet = await new this.setModel(createSetDto);
     createdSet._id = new mongoose.Types.ObjectId().toString();
     return createdSet.save();
