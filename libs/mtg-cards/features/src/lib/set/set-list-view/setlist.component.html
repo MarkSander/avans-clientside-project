@@ -1,8 +1,5 @@
 <div class="component list">
   <div class="row">
-    <div class="col-8">
-      <p>List works!</p>
-    </div>
     <div class="col">
       <a
         class="btn btn-primary btn-sm float-right"
@@ -27,9 +24,11 @@
       <div *ngIf="sets">
         <div *ngFor="let set of sets">
           <tr>
+          <a [routerLink]="set._id">
           <td>
             {{set.name}}
           </td>
+          </a>
           <td>
             {{set.releasedate}}
           </td>

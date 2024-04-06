@@ -1,0 +1,28 @@
+<div class="component detail" *ngIf="set">
+  <div class="row">
+<!--     <div class="col-8"></div> -->
+    <div class="col-4">
+      <a
+        class="btn btn-primary btn-sm float-right"
+        role="button"
+        routerLink="edit"
+        >Edit</a
+      >
+       <a
+        class="btn btn-primary btn-sm float-right"
+        role="button"
+        (click)="deleteDeck()"
+        >Delete</a>
+    </div>
+  </div>
+  <h1>{{set.name}}</h1>
+  <h2>{{set.releasedate}}</h2>
+  <h2>{{set.setcode}}</h2>
+  <h2>{{set.cardsinset}}</h2>
+
+<!--   <h1>{{ card.title}}</h1>
+  <p>Type: {{ card.type}}</p>
+  <p>Rarity: {{ card.rarity}}</p>
+  <p>Manacost: {{ card.manacost}}</p>
+  <p>Price: {{ card.price}}</p> -->
+</div>

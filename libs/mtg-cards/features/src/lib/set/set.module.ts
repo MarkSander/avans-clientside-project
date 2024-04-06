@@ -6,6 +6,7 @@ import { SetlistComponent } from './set-list-view/setlist.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SetService } from './set.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SetDetailComponent } from './set-detail/set-detail.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: SetlistComponent },
@@ -19,10 +20,15 @@ const routes: Routes = [
     pathMatch: 'full',
     component: SetEditComponent,
   },
+  {
+    path: ':id',
+    pathMatch: 'full',
+    component: SetDetailComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [SetlistComponent, SetEditComponent],
+  declarations: [SetlistComponent, SetEditComponent, SetDetailComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,6 +36,6 @@ const routes: Routes = [
     HttpClientModule,
   ],
   providers: [SetService],
-  exports: [RouterModule, SetlistComponent],
+  exports: [RouterModule, SetlistComponent, SetDetailComponent],
 })
 export class SetModule {}
