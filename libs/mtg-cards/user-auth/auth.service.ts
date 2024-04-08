@@ -23,9 +23,9 @@ export class AuthService {
   endpoint = environment.apiUrl + 'api/user';
   public currentUser$ = new BehaviorSubject<IUser | undefined>(undefined);
   private readonly CURRENT_USER = 'currentuser';
-  /*   private readonly headers = new HttpHeaders({
+  private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
-  }); */
+  });
 
   constructor(
     private readonly http: HttpClient,
@@ -36,7 +36,7 @@ export class AuthService {
       ?.pipe(
         switchMap((user: IUser) => {
           if (user) {
-            console.log('User foun in local storage');
+            console.log('User found in local storage');
             this.currentUser$.next(user);
             return of(user);
           } else {
@@ -48,7 +48,7 @@ export class AuthService {
       .subscribe(() => console.log('Startup auth done')); */
   }
 
-  /*   login(email: string, password: string): Observable<IUser | undefined> {
+  login(email: string, password: string): Observable<IUser | undefined> {
     console.log(`login at ${environment.apiUrl}auth/login`);
 
     return this.http
@@ -83,7 +83,7 @@ export class AuthService {
       })
       .pipe(
         map((user) => {
-          // const user = new User(response);
+          //const user = new User(response);
           console.dir(user);
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
@@ -159,5 +159,5 @@ export class AuthService {
     return this.currentUser$.pipe(
       map((user: IUser | undefined) => (user ? user._id === itemUserId : false))
     );
-  } */
+  }
 }

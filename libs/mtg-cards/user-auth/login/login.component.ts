@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router } from 'express';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'avans-nx-project-login',
@@ -27,7 +27,7 @@ export class LoginComponent {
     if (val.email && val.password) {
       this.authService.login(val.email, val.password).subscribe(() => {
         console.log('User is logged in');
-        //this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/');
       });
     }
   }

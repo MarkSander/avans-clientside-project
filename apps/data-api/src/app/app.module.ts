@@ -7,12 +7,14 @@ import {
   BackendFeaturesDeckModule,
   BackendFeaturesSetModule,
 } from '@avans-nx-project/backend/features';
+import { UserModule } from '@avans-nx-project/backend/user';
 
 @Module({
   imports: [
     BackendFeaturesCardModule,
     BackendFeaturesSetModule,
     BackendFeaturesDeckModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
