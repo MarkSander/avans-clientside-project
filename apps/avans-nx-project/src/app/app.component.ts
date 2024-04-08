@@ -8,6 +8,8 @@ import {
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { FeaturesModule } from '@avans-nx-project/mtg-cards/features';
 import { AlertModule } from '@avans-nx-workshop/mtg-cards/alert';
+import { NavComponent } from '@avans-nx-project/ui';
+import { AuthModule } from '@avans-nx-project/mtg-cards/user-auth';
 //import { AuthModule } from '@avans-nx-workshop/mtg-cards/user-auth';
 
 @Component({
@@ -20,9 +22,12 @@ import { AlertModule } from '@avans-nx-workshop/mtg-cards/alert';
     RouterLink,
     RouterLinkActive,
     AlertModule,
+    AuthModule,
+    NavComponent,
   ],
   selector: 'avans-nx-project-root',
   templateUrl: './app.component.html',
+  //providers: [AuthModule],
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {

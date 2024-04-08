@@ -10,7 +10,7 @@ import {
   switchMap,
 } from 'rxjs';
 import { IUser } from '../../shared/api/src';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { AlertService } from '../alert/src';
 
 export const httpOptions = {
@@ -23,16 +23,16 @@ export class AuthService {
   endpoint = environment.apiUrl + 'api/user';
   public currentUser$ = new BehaviorSubject<IUser | undefined>(undefined);
   private readonly CURRENT_USER = 'currentuser';
-  private readonly headers = new HttpHeaders({
+  /*   private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
-  });
+  }); */
 
   constructor(
     private readonly http: HttpClient,
     private router: Router,
     private alertService: AlertService
   ) {
-    this.getUserFromLocalStorage()
+    /*     this.getUserFromLocalStorage()
       ?.pipe(
         switchMap((user: IUser) => {
           if (user) {
@@ -45,10 +45,10 @@ export class AuthService {
           }
         })
       )
-      .subscribe(() => console.log('Startup auth done'));
+      .subscribe(() => console.log('Startup auth done')); */
   }
 
-  login(email: string, password: string): Observable<IUser | undefined> {
+  /*   login(email: string, password: string): Observable<IUser | undefined> {
     console.log(`login at ${environment.apiUrl}auth/login`);
 
     return this.http
@@ -61,14 +61,14 @@ export class AuthService {
         map((user) => {
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
-          this.alertService.success('You have been logged in');
+          //this.alertService.success('You have been logged in');
           return user;
         }),
         catchError((error: any) => {
           console.log('error:', error);
           console.log('error.message:', error.message);
           console.log('error.error.message:', error.error.message);
-          this.alertService.error(error.error.message || error.message);
+          //this.alertService.error(error.error.message || error.message);
           return of(undefined);
         })
       );
@@ -87,14 +87,14 @@ export class AuthService {
           console.dir(user);
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
-          this.alertService.success('You have been registered');
+          //this.alertService.success('You have been registered');
           return user;
         }),
         catchError((error: any) => {
           console.log('error:', error);
           console.log('error.message:', error.message);
           console.log('error.error.message:', error.error.message);
-          this.alertService.error(error.error.message || error.message);
+          //this.alertService.error(error.error.message || error.message);
           return of(undefined);
         })
       );
@@ -103,18 +103,18 @@ export class AuthService {
   logout(): void {
     (<any>this.router)
       .navigate(['/'])
-      .then((success) => {
+      .then((success: any) => {
         // true when canDeactivate allows us to leave the page.
         if (success) {
           console.log('logout - removing local user info');
           localStorage.removeItem(this.CURRENT_USER);
           this.currentUser$.next(undefined);
-          this.alertService.success('You have been logged out.');
+          //this.alertService.success('You have been logged out.');
         } else {
           console.log('navigate result:', success);
         }
       })
-      .catch((error) => console.log('not logged out!'));
+      .catch((error: any) => console.log('not logged out!'));
   }
 
   validateToken(userData: IUser): Observable<IUser | undefined> {
@@ -146,6 +146,8 @@ export class AuthService {
     if (curUser) {
       const localUser = JSON.parse(curUser);
       return of(localUser);
+    } else {
+      return undefined;
     }
   }
 
@@ -157,5 +159,5 @@ export class AuthService {
     return this.currentUser$.pipe(
       map((user: IUser | undefined) => (user ? user._id === itemUserId : false))
     );
-  }
+  } */
 }

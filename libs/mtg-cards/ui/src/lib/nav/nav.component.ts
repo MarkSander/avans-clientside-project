@@ -12,9 +12,18 @@ import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   @Input() title!: string;
+  loggedInUser$!: Observable<IUser | undefined>;
   //isNavbarCollapsed = true;
-  constructor() {}
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.loggedInUser$ = this.authService.currentUser$;
+  }
+
+  logout() {
+    //this.authService.logout();
+  }
   //constructor(private ){}
 }
