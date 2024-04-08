@@ -63,4 +63,14 @@ export class UserService {
     Logger.log(`Delete deck ${id}`);
     return await this.userModel.findByIdAndDelete(id).exec();
   }
+
+  async checkLogin(email: string, password: string) {
+    Logger.log(`Checking login for user with email: ${email}`);
+    try {
+      const user = await this.userModel.findOne({ email, password }).exec();
+      return user ?? null;
+    } catch (error) {
+      throw new Error(`Error checking login: ${error}`);
+    }
+  }
 }

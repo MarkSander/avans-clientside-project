@@ -1,7 +1,15 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Body,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { IUser } from '@avans-nx-workshop/shared/api';
-import { CreateUserDto } from '@avans-nx-project/backend/dto';
+import { CreateUserDto, UpdateUserDto } from '@avans-nx-project/backend/dto';
 import { User } from './user.schema';
 
 @Controller('user')
@@ -21,5 +29,26 @@ export class UserController {
   @Post('')
   create(@Body() data: CreateUserDto): Promise<User> {
     return this.userService.createUser(data);
+  }
+
+  @Put(':id')
+  put(
+    @Param('id') id: string,
+    @Body() data: UpdateUserDto
+  ): Promise<User | null> {
+    return this.userService.updateUser(id, data);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return this.userService.deleteUser(id);
+  }
+
+  @Post('login')
+  async login(
+    @Body() loginData: { email: string; password: string }
+  ): Promise<User | null> {
+    const { email, password } = loginData;
+    return this.userService.checkLogin(email, password);
   }
 }

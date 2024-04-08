@@ -53,7 +53,7 @@ export class AuthService {
 
     return this.http
       .post<IUser>(
-        `${environment.apiUrl}auth/login`,
+        `${environment.apiUrl}/login`,
         { email: email, password: password },
         { headers: this.headers }
       )
