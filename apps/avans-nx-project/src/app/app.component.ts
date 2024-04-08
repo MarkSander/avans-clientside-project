@@ -7,6 +7,8 @@ import {
 } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { FeaturesModule } from '@avans-nx-project/mtg-cards/features';
+import { AlertModule } from '@avans-nx-workshop/mtg-cards/alert';
+//import { AuthModule } from '@avans-nx-workshop/mtg-cards/user-auth';
 
 @Component({
   standalone: true,
@@ -17,6 +19,7 @@ import { FeaturesModule } from '@avans-nx-project/mtg-cards/features';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    AlertModule,
   ],
   selector: 'avans-nx-project-root',
   templateUrl: './app.component.html',

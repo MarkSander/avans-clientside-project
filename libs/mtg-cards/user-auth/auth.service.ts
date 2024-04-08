@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { IUser } from '../../shared/api/src';
 import { Router } from 'express';
+import { AlertService } from '../alert/src';
 
 export const httpOptions = {
   observe: 'body',
@@ -20,13 +21,17 @@ export const httpOptions = {
 @Injectable()
 export class AuthService {
   endpoint = environment.apiUrl + 'api/user';
-  public currentUser$ = new BehaviorSubject<IUser>(undefined);
+  public currentUser$ = new BehaviorSubject<IUser | undefined>(undefined);
   private readonly CURRENT_USER = 'currentuser';
   private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
 
-  constructor(private readonly http: HttpClient, private router: Router) {
+  constructor(
+    private readonly http: HttpClient,
+    private router: Router,
+    private alertService: AlertService
+  ) {
     this.getUserFromLocalStorage()
       ?.pipe(
         switchMap((user: IUser) => {
@@ -96,7 +101,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.router
+    (<any>this.router)
       .navigate(['/'])
       .then((success) => {
         // true when canDeactivate allows us to leave the page.
@@ -112,7 +117,7 @@ export class AuthService {
       .catch((error) => console.log('not logged out!'));
   }
 
-  validateToken(userData: User): Observable<User> {
+  validateToken(userData: IUser): Observable<IUser | undefined> {
     const url = `${environment.apiUrl}auth/profile`;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -150,7 +155,7 @@ export class AuthService {
 
   userMayEdit(itemUserId: string): Observable<boolean> {
     return this.currentUser$.pipe(
-      map((user: IUser) => (user ? user._id === itemUserId : false))
+      map((user: IUser | undefined) => (user ? user._id === itemUserId : false))
     );
   }
 }

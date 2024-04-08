@@ -6,6 +6,14 @@ export interface IUser {
   email: string;
   password: string;
   createdAt: Date;
+  token?: string;
+}
+
+export interface IAuthUser {
+  _id: Id;
+  username: string;
+  email: string;
+  token?: string;
 }
 
 export enum UserRole {
