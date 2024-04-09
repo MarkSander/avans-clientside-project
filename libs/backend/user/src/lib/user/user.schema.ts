@@ -20,6 +20,9 @@ export class User implements IUser {
 
   @Prop()
   createdAt!: Date;
+
+  @Prop()
+  role!: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

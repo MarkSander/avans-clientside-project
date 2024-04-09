@@ -24,6 +24,7 @@ export const httpOptions = {
 export class AuthService {
   endpoint = environment.apiUrl + 'api/user';
   public currentUser$ = new BehaviorSubject<IUser | undefined>(undefined);
+  public currentUserRole$ = new BehaviorSubject<string | undefined>(undefined);
   private readonly CURRENT_USER = 'currentuser';
   private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -60,18 +61,21 @@ export class AuthService {
         { headers: this.headers }
       )
       .pipe(
-        map((user) => {
+        map((user: any) => {
+          user.results as IUser;
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
-          console.log(`New Current user: ${this.currentUser$.value}`);
-          //this.alertService.success('You have been logged in');
+          this.currentUserRole$.next(user.role);
+          console.log(`New Current user: ${this.currentUser$}`);
+          console.log(`User Role: ${this.currentUserRole$}`);
+          this.alertService.success('You have been logged in');
           return user;
         }),
         catchError((error: any) => {
           console.log('error:', error);
           console.log('error.message:', error.message);
           console.log('error.error.message:', error.error.message);
-          //this.alertService.error(error.error.message || error.message);
+          this.alertService.error(error.error.message || error.message);
           return of(undefined);
         })
       );
@@ -116,6 +120,7 @@ export class AuthService {
           console.log('logout - removing local user info');
           localStorage.removeItem(this.CURRENT_USER);
           this.currentUser$.next(undefined);
+          this.currentUserRole$.next(undefined);
           console.log(`Current user ${this.currentUser$.value}`);
           this.alertService.success('You have been logged out.');
         } else {
@@ -167,5 +172,15 @@ export class AuthService {
     return this.currentUser$.pipe(
       map((user: IUser | undefined) => (user ? user._id === itemUserId : false))
     );
+  }
+
+  getUserRole(): IUser | undefined {
+    const curUser = localStorage.getItem(this.CURRENT_USER);
+    if (curUser) {
+      const localUser = JSON.parse(curUser);
+      return localUser;
+    } else {
+      return undefined;
+    }
   }
 }

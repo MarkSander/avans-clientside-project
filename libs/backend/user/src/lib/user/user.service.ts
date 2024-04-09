@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Logger } from '@nestjs/common';
 //import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
 import { CreateUserDto, UpdateUserDto } from '@avans-nx-project/backend/dto';
 import { User } from './user.schema';
 import { InjectModel } from '@nestjs/mongoose';
+import { UserRole } from '@avans-nx-workshop/shared/api';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
@@ -25,6 +31,7 @@ export class UserService {
     const createdUser = await new this.userModel(createUserDto);
     createdUser._id = new mongoose.Types.ObjectId().toString();
     createdUser.createdAt = new Date();
+    createdUser.role = UserRole.Visitor;
     return createdUser.save();
   }
 
@@ -68,6 +75,13 @@ export class UserService {
     Logger.log(`Checking login for user with email: ${email}`);
     try {
       const user = await this.userModel.findOne({ email, password }).exec();
+      Logger.log(`User Found: ${user}`);
+      if (!user) {
+        throw new HttpException(
+          'Invalid login credentials',
+          HttpStatus.UNAUTHORIZED
+        );
+      }
       return user ?? null;
     } catch (error) {
       throw new Error(`Error checking login: ${error}`);

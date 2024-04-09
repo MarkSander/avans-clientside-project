@@ -7,6 +7,7 @@ export interface IUser {
   password: string;
   createdAt: Date;
   token?: string;
+  role: string;
 }
 
 export interface IAuthUser {
@@ -19,11 +20,12 @@ export interface IAuthUser {
 export enum UserRole {
   Admin = 'Admin',
   Visitor = 'Visitor',
+  Editor = 'Editor',
 }
 
 export type ICreateUser = Pick<
   IUser,
-  'username' | 'email' | 'password' | 'createdAt'
+  'username' | 'email' | 'password' | 'createdAt' | 'role'
 >;
 export type IUpdateUser = Partial<Omit<IUser, 'id'>>;
 export type IUpsertUser = IUser;
