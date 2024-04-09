@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 //import { Observable } from 'rxjs';
 import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
-import { IUser } from '@avans-nx-workshop/shared/api';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,13 +14,13 @@ import { Observable } from 'rxjs';
 })
 export class NavComponent implements OnInit {
   @Input() title!: string;
-  loggedInUser$!: Observable<IUser | undefined>;
+  loggedInUser$!: Observable<boolean>;
   //loggedInUser: IUser | undefined;
   //isNavbarCollapsed = true;
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loggedInUser$ = this.authService.currentUser$;
+    this.loggedInUser$ = this.authService.isLoggedIn$;
   }
 
   logout() {

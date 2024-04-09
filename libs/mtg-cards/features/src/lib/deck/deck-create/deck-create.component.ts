@@ -4,6 +4,7 @@ import { IDeck, DeckFormat } from '@avans-nx-workshop/shared/api';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
+import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @Component({
   selector: 'avans-nx-project-deck-create',
@@ -16,22 +17,26 @@ export class DeckCreateComponent implements OnInit {
   options = DeckFormat;
   id!: string;
   addmode!: boolean;
+  userId!: string | undefined;
 
   constructor(
     private deckService: DeckService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.addmode = !this.id;
-
+    const user = this.authService.getUserFromLocalStorage();
+    this.userId = user?._id;
     this.form = this.formBuilder.group({
       _id: this.id,
       name: ['', Validators.required],
       format: ['', Validators.required],
+      userId: this.userId,
       cards: [[]],
     });
 

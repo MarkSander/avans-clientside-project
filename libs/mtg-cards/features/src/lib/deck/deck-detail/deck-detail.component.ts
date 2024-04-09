@@ -3,6 +3,7 @@ import { IDeck } from '@avans-nx-workshop/shared/api';
 import { Subscription } from 'rxjs';
 import { DeckService } from '../deck.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @Component({
   selector: 'avans-nx-project-deck-detail',
@@ -17,7 +18,8 @@ export class DeckDetailComponent implements OnInit, OnDestroy {
   constructor(
     private deckService: DeckService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    protected authService: AuthService
   ) {}
 
   ngOnInit(): void {

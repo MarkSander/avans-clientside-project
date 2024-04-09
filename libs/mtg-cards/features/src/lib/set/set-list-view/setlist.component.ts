@@ -28,15 +28,17 @@ export class SetlistComponent implements OnInit, OnDestroy {
       const userData = JSON.parse(varr);
       this.user = userData.results;
     }
-    /*     this.authService.currentUser$.pipe(first()).subscribe((user) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.authService.currentUser$.pipe(first()).subscribe((user: any) => {
       if (user) {
-        this.testuser = user;
+        const userData = JSON.parse(user);
+        this.testuser = userData.results;
       }
-    }); */
+    });
     console.log(`Current user: ${JSON.stringify(this.user)}`);
     console.log(`Current role ${this.user?.role}`);
-    console.log(`Current testuse: ${this.testuser}`);
-    console.log(`Current testuser role: ${this.testuser?.role}`);
+    console.log(`Current testuser: ${this.testuser}`);
+    console.log(`Current testuser role: ${this.testuser.role}`);
     if (this.user?.role === 'Admin') {
       this.mayEdit = true;
     }
