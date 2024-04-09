@@ -9,9 +9,8 @@
     <p>
       Magic The Gathering is een fysiek kaartspel waarbij je met minimaal 2 spelers speelt totdat je de laatste bent die het overleeft.
       Bij dit spel heb je talloze kaarten. Er zijn verschillende typen kaarten zoals creatures, landen , instants en artifacts. Daarbij kost iedere kaart ook een in game valuta genaamd "mana" om neergelegd te kunnen worden. Ieder jaar komen er minstens 4 nieuwe sets uit wat weer duizenden nieuwe kaarten toevoegd. Een kaart heeft hierbij een naam,
-      het type kaart, de set, prijs, de zeldzaamheid van de kaart, en de manakost om de kaart neer te kunnen leggen. Naast losse Kaarten kun je van een set ook een booster kopen. Dit is een pakketje dat een verschillend aantal random kaarten bevat van de set. Hierbij heb je ook verschillenden typen boosters.
-      Een booster bevat een naam, type, aantal kaarten, set en de prijs. Als je dat nog te weinig vindt bestaat er ook nog een boosterbox. Dit is een doos met allemaal boosters van een bepaalde set. een boosterbox heeft een
-      naam, aantal boosters, set en een (over het algemeen dure) prijs. Daarnaast beschikt Magic the gathering ook over decks. Dit zijn 100 kaarten die zijn samengesteld door Magic the gathering om gelijk mee te kunnen spelen met je vrienden. Deze decks bevatten een prijs en een kaart wat de leider van het deck is genaamd de commander. Dit kan alleen een kaart zijn van het type legendary creature.
+      het type kaart, de set, prijs, de zeldzaamheid van de kaart, en de manakost om de kaart neer te kunnen leggen.
+      Daarnaast beschikt Magic the gathering ook over decks. Dit zijn 100 kaarten die zijn samengesteld door Magic the gathering om gelijk mee te kunnen spelen met je vrienden of kun je deze zelf samenstellen.
     </p>
   </div>
   <div class="col-sm-6 col-md-4 col-lg-3">
@@ -40,30 +39,29 @@
       <li>id: integer</li>
       <li>type: string</li>
       <li>set: string</li>
-      <li>prijs: integer</li>
+      <li>foil: boolean</li>
       <li>manakost: integer</li>
       <li>rarity: string</li>
     </ul>
   </div>
   <div class="col-sm-12 col-md-4">
-    <p>Booster</p>
+    <p>Set</p>
     <ul>
       <li>naam: string</li>
       <li>id: integer</li>
-      <li>type: string</li>
-      <li>Aantal kaarten: integer</li>
-      <li>set: string</li>
-      <li>prijs: integer</li>
+      <li>releasedate: date</li>
+      <li>kaarten: Kaart[]</li>
+      <li>setcode: string</li>
     </ul>
   </div>
   <div class="col-sm-12 col-md-4">
-    <p>BoosterBox</p>
+    <p>Deck</p>
     <ul>
       <li>naam: string</li>
       <li>id: integer</li>
-      <li>aantal boosters: integer</li>
-      <li>set: String</li>
-      <li>prijs: integer</li>
+      <li>format: string</li>
+      <li>userId: String</li>
+      <li>cards: Kaarten[]</li>
     </ul>
   </div>
 </div>
