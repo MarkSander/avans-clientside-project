@@ -2,7 +2,7 @@
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, ICard } from '@avans-nx-workshop/shared/api';
+import { ApiResponse, IUser } from '@avans-nx-workshop/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
@@ -19,9 +19,9 @@ export const httpOptions = {
  *
  */
 @Injectable()
-export class CardService {
-  endpoint = environment.apiUrl + 'api/card';
-  //endpoint = 'http://localhost:3000/api/card';
+export class UserService {
+  endpoint = environment.apiUrl + 'api/user';
+  //endpoint = 'http://localhost:3000/api/user';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -30,16 +30,16 @@ export class CardService {
    *
    * @options options - optional URL queryparam options
    */
-  public list(options?: any): Observable<ICard[] | null> {
+  public list(options?: any): Observable<IUser[] | null> {
     console.log(`list ${this.endpoint}`);
 
     return this.http
-      .get<ApiResponse<ICard[]>>(this.endpoint, {
+      .get<ApiResponse<IUser[]>>(this.endpoint, {
         ...options,
         ...httpOptions,
       })
       .pipe(
-        map((response: any) => response.results as ICard[]),
+        map((response: any) => response.results as IUser[]),
         tap(console.log),
         catchError(this.handleError)
       );
@@ -49,69 +49,45 @@ export class CardService {
    * Get a single item from the service.
    *
    */
-  public read(id: string | null, options?: any): Observable<ICard> {
+  public read(id: string | null, options?: any): Observable<IUser> {
     console.log(`read ${this.endpoint}`);
     return this.http
-      .get<ApiResponse<ICard>>(`${this.endpoint}/${id}`, {
+      .get<ApiResponse<IUser>>(`${this.endpoint}/${id}`, {
         ...options,
         ...httpOptions,
       })
       .pipe(
         tap(console.log),
-        map((response: any) => response.results as ICard),
+        map((response: any) => response.results as IUser),
         catchError(this.handleError)
       );
   }
 
-  public edit(card: ICard, options?: any) {
-    console.log(`edit ${this.endpoint}/${card._id}`);
+  public edit(user: IUser, options?: any) {
+    console.log(`edit ${this.endpoint}/${user._id}`);
     return this.http
-      .put<ApiResponse<ICard>>(`${this.endpoint}/${card._id}`, card, {
+      .put<ApiResponse<IUser>>(`${this.endpoint}/${user._id}`, user, {
         ...options,
         ...httpOptions,
       })
       .pipe(
         tap(console.log),
-        map((response: any) => response.results as ICard),
+        map((response: any) => response.results as IUser),
         catchError(this.handleError)
       );
   }
 
   public delete(id: string) {
-    console.log(`delete ${this.endpoint}/${id}`);
+    console.log(`delete ${this.endpoint}`);
     return this.http
       .delete<ApiResponse<void>>(`${this.endpoint}/${id}`)
       .pipe(tap(console.log), catchError(this.handleError));
-  }
-
-  public create(card: ICard) {
-    console.log(`create ${this.endpoint}`);
-    return this.http.post<ApiResponse<ICard>>(`${this.endpoint}`, card).pipe(
-      tap(console.log),
-      map((response: any) => response.results as ICard),
-      catchError(this.handleError)
-    );
-  }
-
-  public allCardsInSet(setId: string, options?: any) {
-    console.log(`listSet ${this.endpoint}`);
-
-    return this.http
-      .get<ApiResponse<ICard[]>>(`${this.endpoint}/cardsinset/${setId}`, {
-        ...options,
-        ...httpOptions,
-      })
-      .pipe(
-        map((response: any) => response.results as ICard[]),
-        tap(console.log),
-        catchError(this.handleError)
-      );
   }
   /**
    * Handle errors.
    */
   public handleError(error: HttpErrorResponse): Observable<any> {
-    console.log('handleError in CardService', error);
+    console.log('handleError in DeckService', error);
 
     return throwError(() => new Error(error.message));
   }

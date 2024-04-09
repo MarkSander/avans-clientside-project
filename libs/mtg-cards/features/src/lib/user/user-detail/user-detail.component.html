@@ -1,4 +1,4 @@
-<div class="component detail" *ngIf="set">
+<div class="component detail" *ngIf="user">
   <div class="row">
 <!--     <div class="col-8"></div> -->
     <div class="col-4">
@@ -6,22 +6,18 @@
         class="btn btn-primary btn-sm float-right"
         role="button"
         routerLink="edit"
-        >Edit</a
-      >
+        >Edit</a>
        <a
         class="btn btn-primary btn-sm float-right"
         role="button"
-        (click)="deleteDeck()"
+        (click)="deleteUser()"
         >Delete</a>
     </div>
   </div>
-  <h1>Title: {{set.name}}</h1>
-  <h2>Releasedate: {{set.releasedate}}</h2>
-  <h2>Setcode: {{set.setcode}}</h2>
-  <p>Cards in the set:</p>
-  <div *ngFor="let card of cards">
-    <p>{{card.title}}</p>
-  </div>
+  <h1>{{user.username}}</h1>
+  <h2>{{user.email}}</h2>
+  <h2>{{user.createdAt}}</h2>
+  <p>Decks: No decks yet</p>
 
 <!--   <h1>{{ card.title}}</h1>
   <p>Type: {{ card.type}}</p>

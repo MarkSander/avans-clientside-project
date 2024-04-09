@@ -18,6 +18,11 @@ export const appRoutes: Route[] = [
       import('@avans-nx-project/mtg-cards/features').then((c) => c.DeckModule),
   },
   {
+    path: 'users',
+    loadChildren: () =>
+      import('@avans-nx-project/mtg-cards/features').then((c) => c.UserModule),
+  },
+  {
     path: 'about',
     loadChildren: () =>
       import('@avans-nx-project/mtg-cards/features').then((c) => c.AboutModule),

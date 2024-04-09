@@ -6,7 +6,7 @@ import {
   ICard,
   ISet,
 } from '@avans-nx-workshop/shared/api';
-import { Observable, Subscription, first } from 'rxjs';
+import { Subscription, first } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SetService } from '../../set/set.service';

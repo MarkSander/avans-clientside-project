@@ -17,6 +17,11 @@ export class CardController {
     return this.cardService.getOne(id);
   }
 
+  @Get('cardsinset/:id')
+  getAllCardsInSet(@Param('id') id: string): Promise<Card[]> {
+    return this.cardService.getAllCardsInSet(id);
+  }
+
   @Post('')
   create(@Body() data: CreateCardDto): Promise<Card> {
     return this.cardService.createCard(data);

@@ -1,3 +1,5 @@
+//import { IDeck } from './deck.interface';
+
 export type Id = string;
 
 export interface IUser {
@@ -8,6 +10,7 @@ export interface IUser {
   createdAt: Date;
   token?: string;
   role: string;
+  //decks: IDeck[];
 }
 
 export interface IAuthUser {

@@ -4,6 +4,7 @@ import { CardService } from '../card.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, first } from 'rxjs';
 import { DeckService } from '../../deck/deck.service';
+import { SetService } from '../../set/set.service';
 
 @Component({
   selector: 'avans-nx-project-card-detail',
@@ -20,6 +21,7 @@ export class CardDetailComponent implements OnInit, OnDestroy {
   constructor(
     private cardService: CardService,
     private deckService: DeckService,
+    private setService: SetService,
     private route: ActivatedRoute,
     private router: Router
   ) {}

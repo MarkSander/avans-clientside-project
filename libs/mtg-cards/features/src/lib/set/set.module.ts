@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SetService } from './set.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SetDetailComponent } from './set-detail/set-detail.component';
+import { CardService } from '../card/card.service';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: SetlistComponent },
@@ -35,7 +36,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule,
   ],
-  providers: [SetService],
+  providers: [SetService, CardService],
   exports: [
     RouterModule,
     SetlistComponent,

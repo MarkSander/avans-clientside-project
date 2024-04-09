@@ -71,4 +71,8 @@ export class CardService {
     Logger.log(`Delete card ${id}`);
     return await this.cardModel.findByIdAndDelete(id).exec();
   }
+
+  getAllCardsInSet(id: string) {
+    return this.cardModel.find({ setId: id }).exec();
+  }
 }

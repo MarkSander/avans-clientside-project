@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ISet } from '@avans-nx-workshop/shared/api';
+import { ICard, ISet } from '@avans-nx-workshop/shared/api';
 import { Subscription } from 'rxjs';
 import { SetService } from '../set.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CardService } from '../../card/card.service';
 
 @Component({
   selector: 'avans-nx-project-set-detail',
@@ -12,10 +13,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SetDetailComponent implements OnInit, OnDestroy {
   set!: ISet;
   subscription!: Subscription;
+  cardSubscription!: Subscription;
+  cards!: ICard[];
   id!: string;
 
   constructor(
     private setService: SetService,
+    private cardService: CardService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -26,6 +30,11 @@ export class SetDetailComponent implements OnInit, OnDestroy {
       console.log(`result: ${result}`);
       this.set = result;
     });
+    this.cardSubscription = this.cardService
+      .allCardsInSet(this.id)
+      .subscribe((result) => {
+        this.cards = result;
+      });
   }
 
   ngOnDestroy(): void {

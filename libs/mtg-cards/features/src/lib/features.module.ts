@@ -7,13 +7,14 @@ import { CardService } from './card/card.service';
 import { SetService } from './set/set.service';
 import { DeckService } from './deck/deck.service';
 import { AlertModule } from '@avans-nx-workshop/mtg-cards/alert';
+import { UserService } from './user/user.service';
 //import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @NgModule({
   //declarations: [NavComponent],
   imports: [CommonModule, HttpClientModule, AlertModule],
   // declarations: [AboutComponent],
-  providers: [CardService, SetService, DeckService],
+  providers: [CardService, SetService, DeckService, UserService],
   //exports: [NavComponent],
 })
 export class FeaturesModule {}
