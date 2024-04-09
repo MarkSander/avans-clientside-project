@@ -117,7 +117,7 @@ export class AuthService {
           localStorage.removeItem(this.CURRENT_USER);
           this.currentUser$.next(undefined);
           console.log(`Current user ${this.currentUser$.value}`);
-          //this.alertService.success('You have been logged out.');
+          this.alertService.success('You have been logged out.');
         } else {
           console.log('navigate result:', success);
         }
