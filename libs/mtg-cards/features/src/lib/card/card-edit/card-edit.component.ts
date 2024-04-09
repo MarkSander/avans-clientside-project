@@ -1,9 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../card.service';
-import { CardRarity, CardTypes, ICard } from '@avans-nx-workshop/shared/api';
-import { Subscription, first } from 'rxjs';
+import {
+  CardRarity,
+  CardTypes,
+  ICard,
+  ISet,
+} from '@avans-nx-workshop/shared/api';
+import { Observable, Subscription, first } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SetService } from '../../set/set.service';
 
 @Component({
   selector: 'avans-nx-project-card-edit',
@@ -18,17 +24,22 @@ export class CardEditComponent implements OnInit, OnDestroy {
   keys = Object.keys;
   typeOptions = CardTypes;
   rarityOptions = CardRarity;
+  sets!: ISet[] | null;
 
   constructor(
     private cardService: CardService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private setService: SetService
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.addMode = !this.id;
+    this.setService.list().subscribe((sets) => {
+      this.sets = sets;
+    });
 
     this.form = this.formBuilder.group({
       _id: this.id,
@@ -38,6 +49,7 @@ export class CardEditComponent implements OnInit, OnDestroy {
       foil: ['', Validators.required],
       manacost: ['', Validators.required],
       releasedate: ['', Validators.required],
+      setId: ['', Validators.required],
     });
 
     if (!this.addMode) {

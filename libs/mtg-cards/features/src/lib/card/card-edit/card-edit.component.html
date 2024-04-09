@@ -35,6 +35,16 @@
       <input type="date" formControlName="releasedate">
     </div>
   </div>
+  <div>
+    <div>
+      <label>Set</label>
+    </div>
+    <div>
+      <select formControlName="setId">
+        <option *ngFor="let set of sets" [value]="set._id">{{set.name}}</option>
+      </select>
+    </div>
+  </div>
   <div class="form-group">
     <button class="btn btn-primary">
       Save

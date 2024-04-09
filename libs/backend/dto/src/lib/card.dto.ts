@@ -42,6 +42,10 @@ export class CreateCardDto implements ICreateCard {
   @IsDate()
   @IsNotEmpty()
   releasedate!: Date;
+
+  @IsString()
+  @IsNotEmpty()
+  setId!: string;
 }
 
 export class UpsertCardDto implements IUpsertCard {

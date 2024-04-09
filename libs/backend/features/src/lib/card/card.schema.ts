@@ -25,6 +25,9 @@ export class Card {
 
   @Prop()
   releasedate!: Date;
+
+  @Prop()
+  setId!: string;
 }
 
 export const CardSchema = SchemaFactory.createForClass(Card);
