@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AuthService } from './auth.service';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
     ReactiveFormsModule,
   ],
   declarations: [LoginComponent],
-  providers: [AuthService],
   exports: [RouterModule],
 })
 export class AuthModule {}

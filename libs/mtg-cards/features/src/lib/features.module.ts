@@ -4,15 +4,14 @@ import { CommonModule } from '@angular/common';
 //import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardService } from './card/card.service';
-import { NavComponent } from './nav/nav.component';
 import { SetService } from './set/set.service';
 import { DeckService } from './deck/deck.service';
 import { AlertModule } from '@avans-nx-workshop/mtg-cards/alert';
-import { AuthModule, AuthService } from '@avans-nx-project/mtg-cards/user-auth';
+import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @NgModule({
   //declarations: [NavComponent],
-  imports: [CommonModule, HttpClientModule, AlertModule, AuthModule],
+  imports: [CommonModule, HttpClientModule, AlertModule],
   // declarations: [AboutComponent],
   providers: [CardService, SetService, DeckService, AuthService],
   //exports: [NavComponent],

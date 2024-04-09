@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+//import { Observable } from 'rxjs';
+import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 import { IUser } from '@avans-nx-workshop/shared/api';
 import { Observable } from 'rxjs';
-import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @Component({
   selector: 'avans-nx-project-nav',
@@ -15,6 +16,7 @@ import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 export class NavComponent implements OnInit {
   @Input() title!: string;
   loggedInUser$!: Observable<IUser | undefined>;
+  //loggedInUser: IUser | undefined;
   //isNavbarCollapsed = true;
   constructor(private authService: AuthService) {}
 
@@ -23,7 +25,7 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    //this.authService.logout();
+    this.authService.logout();
   }
   //constructor(private ){}
 }

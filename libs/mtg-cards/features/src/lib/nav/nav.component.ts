@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IUser } from '@avans-nx-workshop/shared/api';
-import { Observable } from 'rxjs';
-import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @Component({
   selector: 'avans-nx-project-nav',

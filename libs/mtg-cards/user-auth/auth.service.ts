@@ -18,7 +18,9 @@ export const httpOptions = {
   responseType: 'json',
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   endpoint = environment.apiUrl + 'api/user';
   public currentUser$ = new BehaviorSubject<IUser | undefined>(undefined);
@@ -49,11 +51,11 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<IUser | undefined> {
-    console.log(`login at ${environment.apiUrl}auth/login`);
+    console.log(`login at ${this.endpoint}/login`);
 
     return this.http
       .post<IUser>(
-        `${environment.apiUrl}/login`,
+        `${this.endpoint}/login`,
         { email: email, password: password },
         { headers: this.headers }
       )
@@ -61,6 +63,7 @@ export class AuthService {
         map((user) => {
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
+          console.log(`New Current user: ${this.currentUser$.value}`);
           //this.alertService.success('You have been logged in');
           return user;
         }),
@@ -101,20 +104,25 @@ export class AuthService {
   }
 
   logout(): void {
-    (<any>this.router)
-      .navigate(['/'])
-      .then((success: any) => {
+    /*     console.log('logout - removing local user info');
+    localStorage.removeItem(this.CURRENT_USER);
+    this.currentUser$.next(undefined);
+    this.router.navigate(['/cards']); */
+    this.router
+      .navigate(['/cards'])
+      .then((success) => {
         // true when canDeactivate allows us to leave the page.
         if (success) {
           console.log('logout - removing local user info');
           localStorage.removeItem(this.CURRENT_USER);
           this.currentUser$.next(undefined);
+          console.log(`Current user ${this.currentUser$.value}`);
           //this.alertService.success('You have been logged out.');
         } else {
           console.log('navigate result:', success);
         }
       })
-      .catch((error: any) => console.log('not logged out!'));
+      .catch((error) => console.log('not logged out!'));
   }
 
   validateToken(userData: IUser): Observable<IUser | undefined> {
