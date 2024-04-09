@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from '../alert/src/lib/alert/alert.module';
 
 const routes: Routes = [
+  {
+    path: 'register',
+    pathMatch: 'full',
+    component: RegisterComponent,
+  },
   {
     path: '',
     pathMatch: 'full',
@@ -22,7 +28,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     AlertModule,
   ],
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent],
   exports: [RouterModule],
 })
 export class AuthModule {}

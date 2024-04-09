@@ -85,7 +85,7 @@ export class AuthService {
     console.log(`register at ${environment.apiUrl}users`);
     console.log(userData);
     return this.http
-      .post<IUser>(`${environment.apiUrl}users`, userData, {
+      .post<IUser>(`${environment.apiUrl}api/user`, userData, {
         headers: this.headers,
       })
       .pipe(

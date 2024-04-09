@@ -37,8 +37,6 @@ export class SetlistComponent implements OnInit, OnDestroy {
     });
     console.log(`Current user: ${JSON.stringify(this.user)}`);
     console.log(`Current role ${this.user?.role}`);
-    console.log(`Current testuser: ${this.testuser}`);
-    console.log(`Current testuser role: ${this.testuser.role}`);
     if (this.user?.role === 'Admin') {
       this.mayEdit = true;
     }
