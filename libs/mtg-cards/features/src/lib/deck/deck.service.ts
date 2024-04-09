@@ -92,6 +92,19 @@ export class DeckService {
       catchError(this.handleError)
     );
   }
+
+  public allDeckFromUser(userId: string, options?: any) {
+    return this.http
+      .get<ApiResponse<IDeck[]>>(`${this.endpoint}/decksfromuser/${userId}`, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        map((response: any) => response.results as IDeck[]),
+        tap(console.log),
+        catchError(this.handleError)
+      );
+  }
   /**
    * Handle errors.
    */

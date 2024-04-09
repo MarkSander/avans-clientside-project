@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IUser } from '@avans-nx-workshop/shared/api';
+import { IDeck, IUser } from '@avans-nx-workshop/shared/api';
 import { Subscription } from 'rxjs';
 import { UserService } from '../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,9 @@ import { DeckService } from '../../deck/deck.service';
 export class UserDetailComponent implements OnInit, OnDestroy {
   user!: IUser;
   subscription!: Subscription;
+  deckSubscription!: Subscription;
   id!: string;
+  decks!: IDeck[];
 
   constructor(
     private userService: UserService,
@@ -30,6 +32,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       console.log(`result: ${result}`);
       this.user = result;
     });
+    this.deckSubscription = this.deckService
+      .allDeckFromUser(this.id)
+      .subscribe((result) => {
+        this.decks = result;
+      });
   }
 
   ngOnDestroy(): void {

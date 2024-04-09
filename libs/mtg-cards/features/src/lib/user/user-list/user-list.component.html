@@ -1,5 +1,5 @@
 <div *ngFor="let user of users">
-  <a>
+  <a [routerLink]="user._id">
     <h2> {{user.username}}</h2>
   </a>
 </div>

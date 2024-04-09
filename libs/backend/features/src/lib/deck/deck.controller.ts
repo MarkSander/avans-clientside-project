@@ -17,6 +17,11 @@ export class DeckController {
     return this.deckService.getOne(id);
   }
 
+  @Get('decksfromuser/:id')
+  getAllDecksFromUser(@Param('id') id: string): Promise<Deck[]> {
+    return this.deckService.getAllDecksFromUser(id);
+  }
+
   @Post('')
   create(@Body() data: CreateDeckDto): Promise<Deck> {
     return this.deckService.createDeck(data);

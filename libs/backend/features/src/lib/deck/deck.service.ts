@@ -52,4 +52,8 @@ export class DeckService {
     Logger.log(`Delete deck ${id}`);
     return await this.deckModel.findByIdAndDelete(id).exec();
   }
+
+  getAllDecksFromUser(id: string) {
+    return this.deckModel.find({ userId: id }).exec();
+  }
 }

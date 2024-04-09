@@ -14,10 +14,13 @@
         >Delete</a>
     </div>
   </div>
-  <h1>{{user.username}}</h1>
-  <h2>{{user.email}}</h2>
-  <h2>{{user.createdAt}}</h2>
-  <p>Decks: No decks yet</p>
+  <h1>Username: {{user.username}}</h1>
+  <h2>Email: {{user.email}}</h2>
+  <h2>Created at: {{user.createdAt}}</h2>
+  <p>Decks:</p>
+  <div *ngFor="let deck of decks">
+    <p>{{deck.name}}</p>
+  </div>
 
 <!--   <h1>{{ card.title}}</h1>
   <p>Type: {{ card.type}}</p>

@@ -7,6 +7,7 @@ import { UserService } from './user.service';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { DeckService } from '../deck/deck.service';
 /* import { UserEditComponent } from './user-edit/user-edit.component'; */
 
 const routes: Routes = [
@@ -34,7 +35,7 @@ const routes: Routes = [
     ReactiveFormsModule,
   ],
   declarations: [UserListComponent, UserEditComponent, UserDetailComponent],
-  providers: [UserService],
+  providers: [UserService, DeckService],
   exports: [
     UserListComponent,
     RouterModule,
