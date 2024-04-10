@@ -65,7 +65,9 @@ export class CardListComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.router.navigate(['../'], { relativeTo: this.route });
+          this.router.navigate(['/decks/' + this.deckId], {
+            relativeTo: this.route,
+          });
         },
         error: (error) => {
           console.log(`Error adding Card to Deck: ` + error);

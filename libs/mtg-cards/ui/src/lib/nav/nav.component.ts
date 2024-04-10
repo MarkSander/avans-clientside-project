@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class NavComponent implements OnInit {
   @Input() title!: string;
-  loggedInUser$!: Observable<boolean>;
+  loggedInUser$!: Observable<IUser | undefined>;
   user: IUser | undefined;
   isAdmin: boolean = false;
   //loggedInUser: IUser | undefined;
@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loggedInUser$ = this.authService.isLoggedIn$;
+    this.loggedInUser$ = this.authService.currentUser$;
     this.user = this.authService.getUserFromLocalStorage();
     if (this.user?.role === 'Admin') {
       this.isAdmin = true;

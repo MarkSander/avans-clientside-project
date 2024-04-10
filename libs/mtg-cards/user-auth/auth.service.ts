@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { environment } from '../features/src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
@@ -12,6 +12,7 @@ import {
 import { IUser } from '../../shared/api/src';
 import { Router } from '@angular/router';
 import { AlertService } from '../alert/src';
+import { isPlatformBrowser } from '@angular/common';
 
 export const httpOptions = {
   observe: 'body',
@@ -34,22 +35,26 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    /*     this.getUserFromLocalStorage()
-      ?.pipe(
-        switchMap((user: IUser) => {
-          if (user) {
-            console.log('User found in local storage');
-            this.currentUser$.next(user);
-            return of(user);
-          } else {
-            console.log(`No current user found`);
-            return of(undefined);
-          }
-        })
-      )
-      .subscribe(() => console.log('Startup auth done')); */
+    //this.getUserObservable().pipe(switchMap((user: IUser | undefined) =>))
+    if (isPlatformBrowser(this.platformId)) {
+      this.getUserObservable()
+        .pipe(
+          switchMap((user: IUser | undefined) => {
+            if (user) {
+              console.log('User found in local storage');
+              this.currentUser$.next(user);
+              return of(user);
+            } else {
+              console.log(`No current user found`);
+              return of(undefined);
+            }
+          })
+        )
+        .subscribe(() => console.log('Startup auth done'));
+    }
   }
 
   login(email: string, password: string): Observable<IUser | undefined> {
@@ -162,6 +167,15 @@ export class AuthService {
     } else {
       return undefined;
     }
+  }
+
+  getUserObservable(): Observable<IUser | undefined> {
+    const user = localStorage.getItem(this.CURRENT_USER);
+    if (user) {
+      const localUser = JSON.parse(user);
+      return of(localUser);
+    }
+    return of(undefined);
   }
 
   private saveUserToLocalStorage(user: IUser): void {

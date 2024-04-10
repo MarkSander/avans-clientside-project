@@ -16,14 +16,17 @@
         >Delete</a>
     </div>
   </div>
-  <h1>{{deck.name}}</h1>
-  <h2>{{deck.format}}</h2>
+  <h1>Title: {{deck.name}}</h1>
+  <h2>Format: {{deck.format}}</h2>
+  <h2>Cards in deck:</h2>
   <div *ngIf="deck.cards.length === 0">
     <h2>Deck has no cards yet</h2>
   </div>
-  <h2>{{deck.cards}}</h2>
+  <div *ngFor="let card of deck.cards">
+    <p>{{card.title}}</p>
+  </div>
   <h2 *ngIf="user">Deck made by: {{user.username}}</h2>
-  <button routerLink="card" *ngIf="authService.userMayEdit(deck.userId)">
+  <button [routerLink]="'/cards/deck/' + [deck._id]"*ngIf="authService.userMayEdit(deck.userId)">
     Add card
   </button>
 
