@@ -24,6 +24,7 @@ export const httpOptions = {
 })
 export class AuthService {
   endpoint = environment.apiUrl + 'api/user';
+  public isAdmin$ = new BehaviorSubject<boolean | false>(false);
   public currentUser$ = new BehaviorSubject<IUser | undefined>(undefined);
   //public currentUserRole$ = new BehaviorSubject<string | undefined>(undefined);
   public isLoggedIn$ = new BehaviorSubject<boolean>(false);
@@ -72,6 +73,10 @@ export class AuthService {
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
           this.isLoggedIn$.next(true);
+          if (user.results.role === 'Admin') {
+            this.isAdmin$.next(true);
+          }
+          console.log(`Current user role: ${this.isAdmin$}`);
           console.log(`New Current user: ${this.currentUser$}`);
           this.alertService.success('You have been logged in');
           return user;
@@ -126,6 +131,7 @@ export class AuthService {
           localStorage.removeItem(this.CURRENT_USER);
           this.isLoggedIn$.next(false);
           this.currentUser$.next(undefined);
+          this.isAdmin$.next(false);
           console.log(`Current user ${this.currentUser$.value}`);
           this.alertService.success('You have been logged out.');
         } else {

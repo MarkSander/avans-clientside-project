@@ -24,10 +24,14 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInUser$ = this.authService.currentUser$;
-    this.user = this.authService.getUserFromLocalStorage();
+    /*     this.user = this.authService.getUserFromLocalStorage();
     if (this.user?.role === 'Admin') {
       this.isAdmin = true;
-    }
+    } */
+    this.authService.isAdmin$.subscribe((bool) => {
+      console.log(`boolean found ${bool}`);
+      this.isAdmin = bool;
+    });
   }
 
   logout() {
