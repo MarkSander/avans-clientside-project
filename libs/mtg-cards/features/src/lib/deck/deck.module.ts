@@ -7,6 +7,7 @@ import { DeckService } from './deck.service';
 import { DeckDetailComponent } from './deck-detail/deck-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeckCreateComponent } from './deck-create/deck-create.component';
+import { UserService } from '../user/user.service';
 /* import { DeckEditComponent } from './deck-edit/deck-edit.component'; */
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
     ReactiveFormsModule,
   ],
   declarations: [DeckListComponent, DeckCreateComponent, DeckDetailComponent],
-  providers: [DeckService],
+  providers: [DeckService, UserService],
   exports: [
     DeckListComponent,
     RouterModule,

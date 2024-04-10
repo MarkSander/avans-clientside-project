@@ -6,10 +6,10 @@
         class="btn btn-primary btn-sm float-right"
         role="button"
         routerLink="edit"
-        *ngIf="authService.userMayEdit(deck.userId)"
+        *ngIf="authService.userMayEdit(deck.userId) || authService.userIsEditor || authService.userIsAdmin"
         >Edit</a>
        <a
-        *ngIf="authService.userMayEdit(deck.userId)"
+        *ngIf="authService.userMayEdit(deck.userId) || authService.userIsEditor || authService.userIsAdmin"
         class="btn btn-primary btn-sm float-right"
         role="button"
         (click)="deleteDeck()"
@@ -22,6 +22,7 @@
     <h2>Deck has no cards yet</h2>
   </div>
   <h2>{{deck.cards}}</h2>
+  <h2 *ngIf="user">Deck made by: {{user.username}}</h2>
   <button routerLink="card" *ngIf="authService.userMayEdit(deck.userId)">
     Add card
   </button>

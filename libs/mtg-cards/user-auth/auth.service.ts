@@ -180,6 +180,24 @@ export class AuthService {
     }
   }
 
+  userIsAdmin(): boolean {
+    const User = this.getUserFromLocalStorage();
+    if (User?.role === 'Admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  userIsEditor(): boolean {
+    const User = this.getUserFromLocalStorage();
+    if (User?.role === 'Editor') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getUserRole(): IUser | undefined {
     const curUser = localStorage.getItem(this.CURRENT_USER);
     if (curUser) {

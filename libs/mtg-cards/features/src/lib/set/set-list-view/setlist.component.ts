@@ -29,7 +29,7 @@ export class SetlistComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.authService.getUserFromLocalStorage();
-    if (this.user?.role === 'Admin' || this.user?.role === 'Editor') {
+    if (this.user?.role === 'Admin') {
       this.mayEdit = true;
     }
     this.subscription = this.setService.list().subscribe((results) => {

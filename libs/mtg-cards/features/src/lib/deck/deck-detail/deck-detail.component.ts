@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IDeck } from '@avans-nx-workshop/shared/api';
+import { IDeck, IUser } from '@avans-nx-workshop/shared/api';
 import { Subscription } from 'rxjs';
 import { DeckService } from '../deck.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'avans-nx-project-deck-detail',
@@ -13,13 +14,16 @@ import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 export class DeckDetailComponent implements OnInit, OnDestroy {
   deck!: IDeck;
   subscription!: Subscription;
+  userSubscription!: Subscription;
   id!: string;
+  user!: IUser;
 
   constructor(
     private deckService: DeckService,
     private route: ActivatedRoute,
     private router: Router,
-    protected authService: AuthService
+    protected authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -28,10 +32,16 @@ export class DeckDetailComponent implements OnInit, OnDestroy {
       console.log(`result: ${result}`);
       this.deck = result;
     });
+    this.userSubscription = this.userService
+      .read(this.deck.userId)
+      .subscribe((result) => {
+        this.user = result;
+      });
   }
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
+    if (this.userSubscription) this.userSubscription.unsubscribe();
   }
   deleteDeck() {
     this.deckService
