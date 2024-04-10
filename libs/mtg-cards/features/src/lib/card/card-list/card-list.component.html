@@ -5,6 +5,7 @@
 class="btn btn-primary btn-sm float-right"
 role="button"
 routerLink="new"
+*ngIf="mayEdit"
 >Create New Card</a>
 <div *ngFor="let card of cards">
   <a [routerLink]="[card._id]">

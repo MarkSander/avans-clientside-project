@@ -6,17 +6,19 @@
         class="btn btn-primary btn-sm float-right"
         role="button"
         routerLink="edit"
+        *ngIf="isAdmin"
         >Edit</a
       >
        <a
         class="btn btn-primary btn-sm float-right"
         role="button"
         (click)="deleteDeck()"
+        *ngIf="isAdmin"
         >Delete</a>
     </div>
   </div>
   <h1>Title: {{set.name}}</h1>
-  <h2>Releasedate: {{set.releasedate}}</h2>
+  <h2>Releasedate: {{set.releasedate | date: 'shortDate'}}</h2>
   <h2>Setcode: {{set.setcode}}</h2>
   <p>Cards in the set:</p>
   <div *ngFor="let card of cards">

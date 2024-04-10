@@ -10,18 +10,14 @@
       <tr>
         <th>Name</th>
         <th>Release date</th>
-        <th>Total Cards in set</th>
         <th>Code</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let set of sets">
-        <a [routerLink]="set._id">
-          <td>{{set.name}}</td>
-          <td>{{set.releasedate}}</td>
-          <td>{{set.cardsinset}}</td>
+          <td><a [routerLink]="set._id">{{set.name}}</a></td>
+          <td>{{set.releasedate | date: 'shortDate'}}</td>
           <td>{{set.setcode}}</td>
-        </a>
       </tr>
     </tbody>
   </table>

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, first } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SetService } from '../set.service';
 import { ISet, IUser } from '@avans-nx-workshop/shared/api';
 import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
+import { CardService } from '../../card/card.service';
 //import { getRandomValues } from 'crypto';
 
 @Component({
@@ -13,33 +15,19 @@ import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 export class SetlistComponent implements OnInit, OnDestroy {
   sets: ISet[] | null = null;
   subscription: Subscription | undefined = undefined;
+  cardSubscription: Subscription | undefined = undefined;
   mayEdit: boolean = false;
   user: IUser | undefined;
   testuser!: IUser;
+  cardCount: number = 0;
 
   constructor(
     private setService: SetService,
-    private authService: AuthService
+    private authService: AuthService,
+    protected cardService: CardService
   ) {}
 
   ngOnInit(): void {
-    /*     const varr = localStorage.getItem('currentuser');
-    if (varr) {
-      const userData = JSON.parse(varr);
-      this.user = userData.results;
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.authService.currentUser$.pipe(first()).subscribe((user: any) => {
-      if (user) {
-        const userData = JSON.parse(user);
-        this.testuser = userData.results;
-      }
-    });
-    console.log(`Current user: ${JSON.stringify(this.user)}`);
-    console.log(`Current role ${this.user?.role}`);
-    if (this.user?.role === 'Admin') {
-      this.mayEdit = true;
-    } */
     this.user = this.authService.getUserFromLocalStorage();
     if (this.user?.role === 'Admin' || this.user?.role === 'Editor') {
       this.mayEdit = true;
@@ -55,5 +43,15 @@ export class SetlistComponent implements OnInit, OnDestroy {
     if (this.mayEdit) this.mayEdit = false;
     if (this.authService.currentUser$)
       this.authService.currentUser$.unsubscribe();
+    if (this.cardSubscription) this.cardSubscription.unsubscribe();
+  }
+
+  getCardCount(setId: string): any {
+    this.cardSubscription = this.cardService
+      .allCardsInSet(setId)
+      .subscribe((cards) => {
+        console.log(`Cards length: ${cards.length}`);
+        return cards.length;
+      });
   }
 }

@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ICard, IDeck } from '@avans-nx-workshop/shared/api';
+import { ICard, IDeck, IUser } from '@avans-nx-workshop/shared/api';
 import { CardService } from '../card.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, first } from 'rxjs';
 import { DeckService } from '../../deck/deck.service';
 import { SetService } from '../../set/set.service';
+import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @Component({
   selector: 'avans-nx-project-card-detail',
@@ -17,13 +18,16 @@ export class CardDetailComponent implements OnInit, OnDestroy {
   decksubscription!: Subscription;
   allDecks: IDeck[] = [];
   cardId!: string;
+  user: IUser | undefined;
+  mayEdit: boolean = false;
 
   constructor(
     private cardService: CardService,
     private deckService: DeckService,
     private setService: SetService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -33,11 +37,16 @@ export class CardDetailComponent implements OnInit, OnDestroy {
       .subscribe((result) => {
         this.card = result;
       });
+    this.user = this.authService.getUserFromLocalStorage();
+    if (this.user?.role === 'Admin' || this.user?.role === 'Editor') {
+      this.mayEdit = true;
+    }
   }
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
     if (this.decksubscription) this.decksubscription.unsubscribe();
+    this.mayEdit = false;
   }
   DeleteCard() {
     this.DeleteCardFromDecks();

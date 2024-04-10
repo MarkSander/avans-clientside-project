@@ -22,7 +22,7 @@
     <h2>Deck has no cards yet</h2>
   </div>
   <h2>{{deck.cards}}</h2>
-  <button routerLink="card">
+  <button routerLink="card" *ngIf="authService.userMayEdit(deck.userId)">
     Add card
   </button>
 

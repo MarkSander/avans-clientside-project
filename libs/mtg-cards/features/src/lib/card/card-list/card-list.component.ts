@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../card.service';
-import { ICard, IDeck } from '@avans-nx-workshop/shared/api';
+import { ICard, IDeck, IUser } from '@avans-nx-workshop/shared/api';
 import { Subscription, first } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeckService } from '../../deck/deck.service';
+import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 
 @Component({
   selector: 'avans-nx-project-card-list',
@@ -17,18 +18,25 @@ export class CardListComponent implements OnInit, OnDestroy {
   deckSubscription!: Subscription;
   deckId!: string;
   addCardMode!: boolean;
+  mayEdit: boolean = false;
+  user: IUser | undefined;
 
   constructor(
     private cardService: CardService,
     private route: ActivatedRoute,
     private deckService: DeckService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.deckId = this.route.snapshot.params['id'];
     this.addCardMode = !this.deckId;
 
+    this.user = this.authService.getUserFromLocalStorage();
+    if (this.user?.role === 'Admin' || this.user?.role === 'Editor') {
+      this.mayEdit = true;
+    }
     if (this.deckId) {
       this.deckSubscription = this.deckService
         .read(this.deckId)

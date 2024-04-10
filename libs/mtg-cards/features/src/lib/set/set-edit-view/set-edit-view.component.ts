@@ -33,7 +33,7 @@ export class SetEditComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       releasedate: ['', Validators.required],
       setcode: ['', Validators.required],
-      cardsinset: ['', Validators.required],
+      cardsinset: 0,
     });
 
     if (!this.addMode) {

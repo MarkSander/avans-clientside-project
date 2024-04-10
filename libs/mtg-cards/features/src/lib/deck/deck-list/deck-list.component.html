@@ -7,6 +7,6 @@
       <p>{{card.title}}</p>
     </div>
 </div>
-<button routerLink="create">
+<button routerLink="create" *ngIf="(loggedInUser$ | async)">
   New Deck
 </button>
