@@ -23,7 +23,7 @@ export class SetlistComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const varr = localStorage.getItem('currentuser');
+    /*     const varr = localStorage.getItem('currentuser');
     if (varr) {
       const userData = JSON.parse(varr);
       this.user = userData.results;
@@ -38,6 +38,10 @@ export class SetlistComponent implements OnInit, OnDestroy {
     console.log(`Current user: ${JSON.stringify(this.user)}`);
     console.log(`Current role ${this.user?.role}`);
     if (this.user?.role === 'Admin') {
+      this.mayEdit = true;
+    } */
+    this.user = this.authService.getUserFromLocalStorage();
+    if (this.user?.role === 'Admin' || this.user?.role === 'Editor') {
       this.mayEdit = true;
     }
     this.subscription = this.setService.list().subscribe((results) => {
