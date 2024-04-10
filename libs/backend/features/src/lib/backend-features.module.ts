@@ -3,7 +3,7 @@ import { CardController } from './card/card.controller';
 import { CardService } from './card/card.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Card, CardSchema } from './card/card.schema';
-import { mongourl } from '../mongo_environment.prod';
+import { mongourl } from '../mongo_environment';
 
 @Module({
   imports: [
