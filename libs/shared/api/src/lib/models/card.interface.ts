@@ -24,12 +24,13 @@ export interface ICard {
   foil: boolean;
   manacost: number;
   releasedate: Date;
+  image: string;
   //setId
 }
 
 export type ICreateCard = Pick<
   ICard,
-  'title' | 'type' | 'rarity' | 'foil' | 'manacost' | 'releasedate'
+  'title' | 'type' | 'rarity' | 'foil' | 'manacost' | 'releasedate' | 'image'
 >;
 export type IUpdateCard = Partial<Omit<ICard, 'id'>>;
 export type IUpsertCard = ICard;

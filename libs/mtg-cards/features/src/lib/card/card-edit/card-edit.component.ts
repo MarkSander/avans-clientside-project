@@ -10,6 +10,7 @@ import { Subscription, first } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SetService } from '../../set/set.service';
+import { ImageService } from '../../image/image.service';
 
 @Component({
   selector: 'avans-nx-project-card-edit',
@@ -31,7 +32,8 @@ export class CardEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private setService: SetService
+    private setService: SetService,
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class CardEditComponent implements OnInit, OnDestroy {
       manacost: ['', Validators.required],
       releasedate: ['', Validators.required],
       setId: ['', Validators.required],
+      image: [''],
     });
 
     if (!this.addMode) {
@@ -79,7 +82,11 @@ export class CardEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  private createCard() {
+  /*   private createCard() {
+    this.form.patchValue({
+      image: this.imageService.get(this.form.get('title')?.value),
+    });
+    console.log(`image being send: ${this.form.get('image')?.value}`);
     this.cardService
       .create(this.form.value)
       .pipe(first())
@@ -91,7 +98,34 @@ export class CardEditComponent implements OnInit, OnDestroy {
           console.log(`Error during create card: ` + error);
         },
       });
+  } */
+
+  private createCard() {
+    const cardTitle = this.form.get('title')?.value;
+
+    this.imageService.get(cardTitle).subscribe({
+      next: (imageUrl: string) => {
+        this.form.patchValue({ image: imageUrl });
+        console.log(`Image being sent: ${this.form.get('image')?.value}`);
+
+        this.cardService
+          .create(this.form.value)
+          .pipe(first())
+          .subscribe({
+            next: () => {
+              this.router.navigate(['../'], { relativeTo: this.route });
+            },
+            error: (error) => {
+              console.log(`Error during create card: ` + error);
+            },
+          });
+      },
+      error: (error) => {
+        console.error(`Error fetching card image: `, error);
+      },
+    });
   }
+
   private editCard() {
     this.cardService
       .edit(this.form.value)

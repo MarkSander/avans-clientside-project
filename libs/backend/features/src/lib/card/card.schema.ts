@@ -28,6 +28,9 @@ export class Card {
 
   @Prop()
   setId!: string;
+
+  @Prop()
+  image!: string;
 }
 
 export const CardSchema = SchemaFactory.createForClass(Card);

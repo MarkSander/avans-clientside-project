@@ -5,13 +5,13 @@
 class="btn btn-primary btn-sm float-right"
 role="button"
 routerLink="new"
-*ngIf="mayEdit"
 >Create New Card</a>
 <div *ngFor="let card of cards">
-  <a [routerLink]="[card._id]">
-    <h2> {{card.title}}</h2>
-  </a>
-    <p>Card type: {{card.type}}</p>
-
-    <button (click)="AddToDeck(card)" *ngIf="deckId">Add to Deck</button>
+  <div class="card" style="width: 18rem">
+    <div class="card-body" [routerLink]="[card._id]">
+      <h5 class="card-title">{{card.title}}</h5>
+      <p class="card-text"> Card type: {{card.type}}</p>
+      <a class="card-link" (click)="AddToDeck(card)" *ngIf="deckId">Add to Deck</a>
+    </div>
+  </div>
 </div>
