@@ -1,0 +1,13 @@
+.image-container {
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  width: 18rem;
+}
+

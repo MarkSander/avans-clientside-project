@@ -4,21 +4,31 @@
   <div class="form-row">
     <div class="form-group col">
       <label>Title</label>
-      <input type="text" formControlName="title" class="form-control">
+      <input type="text" formControlName="title" class="form-control" required/>
+      <div *ngIf="title?.invalid" class="alert alert-danger">
+        <div *ngIf="title?.errors?.['required']"> Title is required</div>
+        <div *ngIf!="title?.errors?.['required']"> Something went wrong</div>
+      </div>
     </div>
     <div class="form-group col">
       <label>Type</label>
       <select formControlName="type" class="form-control">
-        <option *ngFor="let option of keys(typeOptions)" [ngValue]="option">{{option}}</option>
+        <option *ngFor="let option of keys(typeOptions)" [ngValue]="option" required>{{option}}</option>
       </select>
+      <div *ngIf="type?.invalid" class="alert alert-danger">
+        <div *ngIf="type?.errors?.['required']"> Type is required</div>
+      </div>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col">
       <label>Rarity</label>
       <select formControlName="rarity" class="form-control">
-        <option *ngFor="let option of keys(rarityOptions)" [ngValue]="option">{{option}}</option>
+        <option *ngFor="let option of keys(rarityOptions)" [ngValue]="option" required>{{option}}</option>
       </select>
+      <div *ngIf="rarity?.invalid" class="alert alert-danger">
+        <div *ngIf="rarity?.errors?.['required']"> Rarity is required</div>
+      </div>
     </div>
     <div>
       <label>Foil</label>
@@ -28,11 +38,17 @@
   <div class="form-row">
     <div class="form-group col">
       <label>Manacost</label>
-      <input type="number" formControlName="manacost">
+      <input type="number" formControlName="manacost" required>
+      <div *ngIf="manacost?.invalid" class="alert alert-danger">
+        <div *ngIf="manacost?.errors?.['required']"> Manacost is required</div>
+      </div>
     </div>
     <div>
       <label>Releasedate</label>
-      <input type="date" formControlName="releasedate">
+      <input type="date" formControlName="releasedate" required>
+      <div *ngIf="releasedate?.invalid" class="alert alert-danger">
+        <div *ngIf="releasedate?.errors?.['required']"> Releasedate is required</div>
+      </div>
     </div>
   </div>
   <div>
@@ -41,8 +57,11 @@
     </div>
     <div>
       <select formControlName="setId">
-        <option *ngFor="let set of sets" [value]="set._id">{{set.name}}</option>
+        <option *ngFor="let set of sets" [value]="set._id" required>{{set.name}}</option>
       </select>
+      <div *ngIf="set?.invalid" class="alert alert-danger">
+        <div *ngIf="set?.errors?.['required']"> Set is required</div>
+      </div>
     </div>
   </div>
   <div class="form-group">

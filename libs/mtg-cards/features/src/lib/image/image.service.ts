@@ -25,9 +25,10 @@ export class ImageService {
 
   public get(name: string): Observable<string> {
     console.log(`searching for an cardimage with the name: ${name}`);
-    return this.http.get<any>(`${this.endpoint}${name}`).pipe(
+    const reqname = name.replace(/\s/g, '');
+    return this.http.get<any>(`${this.endpoint}${reqname}`).pipe(
       tap(console.log),
-      map((response: any) => response.image_uris.normal)
+      map((response: any) => response.image_uris.art_crop)
     );
   }
 }

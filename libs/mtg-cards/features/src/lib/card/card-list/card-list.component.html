@@ -6,12 +6,17 @@ class="btn btn-primary btn-sm float-right"
 role="button"
 routerLink="new"
 >Create New Card</a>
+<div class="card-group d-flex justify-content-center">
 <div *ngFor="let card of cards">
-  <div class="card" style="width: 18rem">
+  <div class="card text-center m-1">
     <div class="card-body" [routerLink]="[card._id]">
+      <div *ngIf="card.image">
+        <img [src]="card.image">
+      </div>
       <h5 class="card-title">{{card.title}}</h5>
       <p class="card-text"> Card type: {{card.type}}</p>
       <a class="card-link" (click)="AddToDeck(card)" *ngIf="deckId">Add to Deck</a>
     </div>
   </div>
+</div>
 </div>

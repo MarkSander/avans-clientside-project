@@ -139,4 +139,23 @@ export class CardEditComponent implements OnInit, OnDestroy {
         },
       });
   }
+
+  get title() {
+    return this.form.get('title');
+  }
+  get type() {
+    return this.form.get('type');
+  }
+  get rarity() {
+    return this.form.get('rarity');
+  }
+  get manacost() {
+    return this.form.get('manacost');
+  }
+  get releasedate() {
+    return this.form.get('releasedate');
+  }
+  get set() {
+    return this.form.get('setId');
+  }
 }
