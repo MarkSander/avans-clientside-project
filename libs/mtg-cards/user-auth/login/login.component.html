@@ -1,21 +1,58 @@
-<form [formGroup]="form">
-  <fieldset>
-      <legend>Login</legend>
-      <div class="form-field">
-          <label>Email:</label>
-          <input name="email" formControlName="email">
-      </div>
-      <div class="form-field">
-          <label>Password:</label>
-          <input name="password" formControlName="password"
-                 type="password">
-      </div>
-  </fieldset>
-  <div class="form-buttons">
-      <button class="button button-primary"
-              (click)="login()">Login</button>
+<div class="card-container d-flex justify-content-center align-items-center">
+  <div class="card">
+    <div class="row g-0">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy69pW3mUJ2iE0J3cyz4arUmwFT75BmwXN0A&s"
+      />
+      <form [formGroup]="form">
+        <fieldset>
+          <legend>Login</legend>
+          <div class="form-field">
+            <label>Email:</label>
+            <input name="email" formControlName="email" required />
+            <div
+              *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="email?.errors?.['required']">Email is required</div>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Password:</label>
+            <input
+              name="password"
+              formControlName="password"
+              type="password"
+              required
+            />
+            <div
+              *ngIf="
+                password?.invalid && (password?.dirty || password?.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="password?.errors?.['required']">
+                Password is required
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        <div class="form-buttons">
+          <button
+            class="button button-primary"
+            (click)="login()"
+            [disabled]="form.invalid"
+          >
+            Login
+          </button>
+        </div>
+        <div class="form-buttons">
+          <button routerLink="register">Register</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-buttons">
-    <button routerLink="register">Register</button>
-  </div>
-</form>
+</div>

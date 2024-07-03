@@ -8,6 +8,7 @@ import {
   map,
   of,
   switchMap,
+  throwError,
 } from 'rxjs';
 import { IUser } from '../../shared/api/src';
 import { Router } from '@angular/router';
@@ -112,7 +113,8 @@ export class AuthService {
           console.log('error.message:', error.message);
           console.log('error.error.message:', error.error.message);
           //this.alertService.error(error.error.message || error.message);
-          return of(undefined);
+          return throwError(error);
+          //return of(undefined);
         })
       );
   }
