@@ -7,6 +7,7 @@ import { first } from 'rxjs';
 @Component({
   selector: 'avans-nx-project-register',
   templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   form: FormGroup;
