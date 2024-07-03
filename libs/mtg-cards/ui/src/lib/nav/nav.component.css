@@ -11,11 +11,6 @@
   font-weight: bold; /* Make the font bold if desired */
 }
 
-/* Style the navigation items */
-.navbar-nav {
-  margin-left: auto; /* Push the navigation items to the right */
-}
-
 .nav-item {
   margin-right: 15px; /* Add some spacing between the navigation items */
 }

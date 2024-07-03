@@ -15,6 +15,7 @@ import { ImageService } from '../../image/image.service';
 @Component({
   selector: 'avans-nx-project-card-edit',
   templateUrl: './card-edit.component.html',
+  styleUrls: ['./card-edit.component.css'],
 })
 export class CardEditComponent implements OnInit, OnDestroy {
   card: ICard | null = null;
@@ -82,11 +83,30 @@ export class CardEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  /*   private createCard() {
-    this.form.patchValue({
-      image: this.imageService.get(this.form.get('title')?.value),
+  private createCard() {
+    const cardTitle = this.form.get('title')?.value;
+    const defaultImageUrl = 'assets/mtglogo.png';
+
+    this.imageService.get(cardTitle).subscribe({
+      next: (imageUrl: string) => {
+        this.form.patchValue({ image: imageUrl });
+        console.log(`Image being sent: ${this.form.get('image')?.value}`);
+
+        this.createCardWithImage();
+      },
+      error: (error) => {
+        if (error.status === 404) {
+          console.log(`Image not found, using default image.`);
+          this.form.patchValue({ image: defaultImageUrl });
+          this.createCardWithImage();
+        } else {
+          console.error(`Error fetching card image: `, error);
+        }
+      },
     });
-    console.log(`image being send: ${this.form.get('image')?.value}`);
+  }
+
+  private createCardWithImage() {
     this.cardService
       .create(this.form.value)
       .pipe(first())
@@ -98,9 +118,9 @@ export class CardEditComponent implements OnInit, OnDestroy {
           console.log(`Error during create card: ` + error);
         },
       });
-  } */
+  }
 
-  private createCard() {
+  /*   private createCard() {
     const cardTitle = this.form.get('title')?.value;
 
     this.imageService.get(cardTitle).subscribe({
@@ -124,7 +144,7 @@ export class CardEditComponent implements OnInit, OnDestroy {
         console.error(`Error fetching card image: `, error);
       },
     });
-  }
+  } */
 
   private editCard() {
     this.cardService

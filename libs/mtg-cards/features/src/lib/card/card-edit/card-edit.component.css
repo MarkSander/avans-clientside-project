@@ -1,0 +1,32 @@
+.card {
+  display: inline-block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  padding: 2.5rem; /* Increase padding for more space */
+  box-shadow: 0 4px 8px rgb(255, 55, 0);
+  border-radius: 8px;
+  background-color: #666666;
+  color: orangered;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  background-image: url('https://gatherer.wizards.com/Images/background/Gray_Patterned_BG.jpg');
+  background-size: cover; /* To cover the entire area */
+  background-repeat: no-repeat; /* No repeat */
+  background-position: center center; /* Center the image */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+}
+
+input,
+select {
+  background-color: #d1d1d1;
+}

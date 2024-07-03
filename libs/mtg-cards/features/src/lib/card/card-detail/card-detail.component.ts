@@ -10,7 +10,7 @@ import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 @Component({
   selector: 'avans-nx-project-card-detail',
   templateUrl: './card-detail.component.html',
-  styles: [],
+  styleUrls: ['./card-detail.component.css'],
 })
 export class CardDetailComponent implements OnInit, OnDestroy {
   card!: ICard;

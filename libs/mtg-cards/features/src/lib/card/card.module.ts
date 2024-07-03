@@ -10,6 +10,7 @@ import { CardEditComponent } from './card-edit/card-edit.component';
 import { DeckService } from '../deck/deck.service';
 import { SetService } from '../set/set.service';
 import { ImageService } from '../image/image.service';
+import { FieldErrorDisplayComponent } from '@avans-nx-workshop/mtg-cards/alert';
 
 const routes: Routes = [
   {
@@ -45,7 +46,12 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
   ],
-  declarations: [CardListComponent, CardEditComponent, CardDetailComponent],
+  declarations: [
+    CardListComponent,
+    CardEditComponent,
+    CardDetailComponent,
+    FieldErrorDisplayComponent,
+  ],
   providers: [CardService, DeckService, SetService, ImageService],
   exports: [
     CardListComponent,

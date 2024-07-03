@@ -1,3 +1,9 @@
-.dark-background{
-  background-color: black;
+.background {
+  background-image: url("https://gatherer.wizards.com/Images/background/Gray_Patterned_BG.jpg");
+  background-size: cover; /* To cover the entire area */
+  background-repeat: no-repeat; /* No repeat */
+  background-position: center center; /* Center the image */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
 }
+
