@@ -9,7 +9,7 @@ import { DeckService } from '../../deck/deck.service';
 @Component({
   selector: 'avans-nx-project-user-detail',
   templateUrl: './user-detail.component.html',
-  styles: [],
+  styleUrl: './user-detail.component.css',
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
   user!: IUser;

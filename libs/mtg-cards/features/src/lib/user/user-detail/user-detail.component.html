@@ -1,4 +1,4 @@
-<div class="component detail" *ngIf="user" style="color: white">
+<div class="component detail" *ngIf="user">
   <div class="row">
     <!--     <div class="col-8"></div> -->
     <div class="col-4">
@@ -8,7 +8,7 @@
         routerLink="edit"
         >Edit</a> -->
       <a
-        class="btn btn-primary btn-sm float-right"
+        class="btn btn-danger btn-sm float-right"
         role="button"
         (click)="deleteUser()"
         >Delete</a

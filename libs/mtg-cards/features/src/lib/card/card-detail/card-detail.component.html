@@ -9,14 +9,14 @@
           <div class="col-8"></div>
           <div class="col-4 d-flex justify-content-end">
             <a
-              class="btn btn-primary btn-sm float-right"
+              class="btn btn-outline-success btn-sm float-right"
               role="button"
               routerLink="edit"
               *ngIf="mayEdit"
               >Edit</a
             >
             <a
-              class="btn btn-primary btn-sm float-right"
+              class="btn btn-outline-danger btn-sm float-right"
               role="button"
               (click)="DeleteCard()"
               *ngIf="mayEdit"
