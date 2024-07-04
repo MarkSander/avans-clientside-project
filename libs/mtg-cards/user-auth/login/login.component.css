@@ -33,3 +33,16 @@ html {
     max-width: 100%;
   }
 }
+
+.error-message {
+  height: 20px; /* Adjust this height based on your design */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  color: red;
+}
+
+.error-message.show {
+  visibility: visible;
+  opacity: 1;
+}

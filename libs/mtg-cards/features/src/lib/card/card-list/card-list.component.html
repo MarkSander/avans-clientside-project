@@ -6,7 +6,7 @@
     class="btn btn-primary btn-sm float-right"
     role="button"
     routerLink="new"
-    *ngIf="mayEdit"
+    *ngIf="mayEdit && !deckId"
     >Create New Card</a
   >
   <div class="card-group d-flex justify-content-center">

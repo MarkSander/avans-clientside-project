@@ -12,6 +12,7 @@ import { first } from 'rxjs';
 export class LoginComponent {
   form: FormGroup;
   errorMessage: string | null = null;
+  wronglogin: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -37,7 +38,8 @@ export class LoginComponent {
     if (val.email && val.password) {
       this.authService.login(val.email, val.password).subscribe((data) => {
         if (data) this.router.navigateByUrl('/');
-        else this.form.setErrors({ unauthenticated: true });
+        else this.wronglogin = true;
+        //else this.form.setErrors({ unauthenticated: true });
       });
     }
   }

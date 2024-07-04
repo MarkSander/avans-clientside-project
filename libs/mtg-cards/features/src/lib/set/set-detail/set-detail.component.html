@@ -1,41 +1,43 @@
-<div class="card-container">
-  <div class="component detail" *ngIf="set">
-    <div class="card">
-      <div class="row">
-        <!--     <div class="col-8"></div> -->
-        <div class="col-4">
-          <a
-            class="btn btn-primary btn-sm float-right"
-            role="button"
-            routerLink="edit"
-            *ngIf="isAdmin"
-            >Edit</a
-          >
-          <a
-            class="btn btn-primary btn-sm float-right"
-            role="button"
-            (click)="deleteDeck()"
-            *ngIf="isAdmin"
-            >Delete</a
-          >
+<div class="setdetail">
+  <div class="card-container">
+    <div class="component detail" *ngIf="set">
+      <div class="card">
+        <div class="row">
+          <!--     <div class="col-8"></div> -->
+          <div class="col-4">
+            <a
+              class="btn btn-primary btn-sm float-right"
+              role="button"
+              routerLink="edit"
+              *ngIf="isAdmin"
+              >Edit</a
+            >
+            <a
+              class="btn btn-primary btn-sm float-right"
+              role="button"
+              (click)="deleteDeck()"
+              *ngIf="isAdmin"
+              >Delete</a
+            >
+          </div>
         </div>
-      </div>
-      <h3>Title:</h3>
-      <p>{{ set.name }}</p>
-      <h4>Releasedate:</h4>
-      <p>{{ set.releasedate | date : 'shortDate' }}</p>
-      <h4>Setcode:</h4>
-      <p>{{ set.setcode }}</p>
-      <h4>Cards in the set:</h4>
-      <div *ngFor="let card of cards">
-        <p>{{ card.title }}</p>
-      </div>
+        <h3>Title:</h3>
+        <p>{{ set.name }}</p>
+        <h4>Releasedate:</h4>
+        <p>{{ set.releasedate | date : 'shortDate' }}</p>
+        <h4>Setcode:</h4>
+        <p>{{ set.setcode }}</p>
+        <h4>Cards in the set:</h4>
+        <div *ngFor="let card of cards">
+          <p>{{ card.title }}</p>
+        </div>
 
-      <!--   <h1>{{ card.title}}</h1>
+        <!--   <h1>{{ card.title}}</h1>
   <p>Type: {{ card.type}}</p>
   <p>Rarity: {{ card.rarity}}</p>
   <p>Manacost: {{ card.manacost}}</p>
   <p>Price: {{ card.price}}</p> -->
+      </div>
     </div>
   </div>
 </div>

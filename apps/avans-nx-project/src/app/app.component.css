@@ -5,7 +5,4 @@
   background-position: center center; /* Center the image */
   width: 100%; /* Full viewport width */
   height: 100%; /* Full viewport height */
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
 }

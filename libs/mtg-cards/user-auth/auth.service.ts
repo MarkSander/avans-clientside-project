@@ -119,13 +119,9 @@ export class AuthService {
       );
   }
 
-  logout(): void {
-    /*     console.log('logout - removing local user info');
-    localStorage.removeItem(this.CURRENT_USER);
-    this.currentUser$.next(undefined);
-    this.router.navigate(['/cards']); */
+  /*   logout(): void {
     this.router
-      .navigate(['/cards'])
+      .navigate(['/decks'])
       .then((success) => {
         // true when canDeactivate allows us to leave the page.
         if (success) {
@@ -141,6 +137,27 @@ export class AuthService {
         }
       })
       .catch((error) => console.log('not logged out!'));
+  } */
+  logout(): void {
+    console.log('logout - removing local user info');
+    localStorage.removeItem(this.CURRENT_USER);
+    this.isLoggedIn$.next(false);
+    this.currentUser$.next(undefined);
+    this.isAdmin$.next(false);
+    console.log(`Current user ${this.currentUser$.value}`);
+    this.alertService.success('You have been logged out.');
+
+    this.router
+      .navigate(['/decks'])
+      .then((success) => {
+        // true when canDeactivate allows us to leave the page.
+        if (success) {
+          console.log('Successfully navigated to /decks.');
+        } else {
+          console.log('navigate result:', success);
+        }
+      })
+      .catch((error) => console.log('Navigation error:', error));
   }
 
   validateToken(userData: IUser): Observable<IUser | undefined> {

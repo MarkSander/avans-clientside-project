@@ -32,6 +32,6 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@avans-nx-project/mtg-cards/user-auth').then((c) => c.AuthModule),
   },
-  { path: '', pathMatch: 'full', redirectTo: '' },
+  { path: '', pathMatch: 'full', redirectTo: 'decks' },
   /* { path: 'about', pathMatch: 'full', component: AboutComponent }, */
 ];
