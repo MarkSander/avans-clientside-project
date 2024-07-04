@@ -1,28 +1,29 @@
-<div class="component detail" *ngIf="user">
+<div class="component detail" *ngIf="user" style="color: white">
   <div class="row">
-<!--     <div class="col-8"></div> -->
+    <!--     <div class="col-8"></div> -->
     <div class="col-4">
-      <a
+      <!--       <a
         class="btn btn-primary btn-sm float-right"
         role="button"
         routerLink="edit"
-        >Edit</a>
-       <a
+        >Edit</a> -->
+      <a
         class="btn btn-primary btn-sm float-right"
         role="button"
         (click)="deleteUser()"
-        >Delete</a>
+        >Delete</a
+      >
     </div>
   </div>
-  <h1>Username: {{user.username}}</h1>
-  <h2>Email: {{user.email}}</h2>
-  <h2>Created at: {{user.createdAt}}</h2>
-  <p>Decks:</p>
+  <h4>Username: {{ user.username }}</h4>
+  <h4>Email: {{ user.email }}</h4>
+  <h4>Created at: {{ user.createdAt | date : 'shortDate' }}</h4>
+  <h4>Decks:</h4>
   <div *ngFor="let deck of decks">
-    <p>{{deck.name}}</p>
+    <p>{{ deck.name }}</p>
   </div>
 
-<!--   <h1>{{ card.title}}</h1>
+  <!--   <h1>{{ card.title}}</h1>
   <p>Type: {{ card.type}}</p>
   <p>Rarity: {{ card.rarity}}</p>
   <p>Manacost: {{ card.manacost}}</p>

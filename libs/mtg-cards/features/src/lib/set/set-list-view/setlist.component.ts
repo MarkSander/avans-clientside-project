@@ -10,7 +10,7 @@ import { CardService } from '../../card/card.service';
 @Component({
   selector: 'avans-nx-project-app-setlist',
   templateUrl: './setlist.component.html',
-  styles: [],
+  styleUrl: './setlist.component.css',
 })
 export class SetlistComponent implements OnInit, OnDestroy {
   sets: ISet[] | null = null;

@@ -1,26 +1,57 @@
-<h2 *ngIf="addMode">New Set</h2>
-<h2 *ngIf="!addMode">Edit Set</h2>
-<form [formGroup]="form" (ngSubmit)="OnSubmit()">
-  <div class="form-row">
-    <div class="form-group col">
-      <label>Title</label>
-      <input type="text" formControlName="name" class="form-control">
-    </div>
-    <div class="form-group col">
-      <label>SetCode</label>
-      <input type="text" formControlName="setcode" class="form-control">
-    </div>
+<div class="card-container">
+  <div class="card">
+    <h2 *ngIf="addMode">New Set</h2>
+    <h2 *ngIf="!addMode">Edit Set</h2>
+    <form [formGroup]="form" (ngSubmit)="OnSubmit()">
+      <div class="form-row">
+        <div class="form-group col">
+          <label>Title</label>
+          <input type="text" formControlName="name" class="form-control" />
+          <div
+            [class.show]="name?.invalid && (name?.touched || name?.dirty)"
+            class="error-message"
+          >
+            <div *ngIf="name?.errors?.['required']">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>SetCode</label>
+          <input type="text" formControlName="setcode" class="form-control" />
+          <div
+            [class.show]="
+              setcode?.invalid && (setcode?.touched || setcode?.dirty)
+            "
+            class="error-message"
+          >
+            <div *ngIf="setcode?.errors?.['required']">Setcode is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Releasedate</label>
+          <input
+            type="date"
+            formControlName="releasedate"
+            class="form-control"
+          />
+          <div
+            [class.show]="
+              releasedate?.invalid &&
+              (releasedate?.dirty || releasedate?.touched)
+            "
+            class="error-message"
+          >
+            <div *ngIf="releasedate?.errors?.['required']">
+              Releasedate is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" [disabled]="form.invalid">Save</button>
+        <a routerLink="../" class="btn btn-link">Cancel</a>
+      </div>
+    </form>
   </div>
-  <div class="form-row">
-    <div>
-      <label>Releasedate</label>
-      <input type="date" formControlName="releasedate">
-    </div>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary">
-      Save
-    </button>
-    <a routerLink="../" class="btn btn-link">Cancel</a>
-  </div>
-</form>
+</div>

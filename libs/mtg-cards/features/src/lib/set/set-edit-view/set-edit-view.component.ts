@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'avans-nx-project-app-set-edit',
   templateUrl: './set-edit-view.component.html',
+  styleUrl: './set-edit-view.component.css',
 })
 export class SetEditComponent implements OnInit, OnDestroy {
   set!: ISet;
@@ -83,5 +84,17 @@ export class SetEditComponent implements OnInit, OnDestroy {
           console.log(`Error editing set: ${error}`);
         },
       });
+  }
+
+  get name() {
+    return this.form.get('name');
+  }
+
+  get releasedate() {
+    return this.form.get('releasedate');
+  }
+
+  get setcode() {
+    return this.form.get('setcode');
   }
 }

@@ -28,10 +28,11 @@ export class NavComponent implements OnInit {
     if (this.user?.role === 'Admin') {
       this.isAdmin = true;
     } */
-    this.authService.isAdmin$.subscribe((bool) => {
+    /*     this.authService.isAdmin$.subscribe((bool) => {
       console.log(`boolean found ${bool}`);
       this.isAdmin = bool;
-    });
+    }); */
+    this.isAdmin = this.authService.userIsAdmin();
   }
 
   logout() {

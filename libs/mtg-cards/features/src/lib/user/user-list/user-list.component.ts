@@ -6,6 +6,7 @@ import { IUser } from '@avans-nx-workshop/shared/api';
 @Component({
   selector: 'avans-nx-project-user-list',
   templateUrl: './user-list.component.html',
+  styleUrl: './user-list.component.css',
 })
 export class UserListComponent implements OnInit, OnDestroy {
   users!: IUser[] | null;

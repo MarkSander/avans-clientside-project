@@ -9,6 +9,7 @@ import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 @Component({
   selector: 'avans-nx-project-deck-create',
   templateUrl: './deck-create.component.html',
+  styleUrl: './deck-create.component.css',
 })
 export class DeckCreateComponent implements OnInit {
   deck: IDeck | null = null;
@@ -101,5 +102,13 @@ export class DeckCreateComponent implements OnInit {
           console.log(`Error editing deck: ` + error);
         },
       });
+  }
+
+  get name() {
+    return this.form.get('name');
+  }
+
+  get format() {
+    return this.form.get('format');
   }
 }

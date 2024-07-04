@@ -1,0 +1,15 @@
+.card {
+  display: inline-block;
+  max-width: 100%;
+  margin-left: 2rem;
+  margin-right: auto;
+  margin-top: 2rem;
+  padding: 2.5rem; /* Increase padding for more space */
+  border-radius: 8px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

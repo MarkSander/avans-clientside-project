@@ -14,23 +14,6 @@
   align-items: center;
 }
 
-.background {
-  background-image: url('https://gatherer.wizards.com/Images/background/Gray_Patterned_BG.jpg');
-  background-size: cover; /* To cover the entire area */
-  /*background-repeat: no-repeat; /* No repeat */
-  background-position: center center; /* Center the image */
-  width: 100%; /* Full viewport width */
-  height: 100%; /* Full viewport height */
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-}
-
-input,
-select {
-  background-color: #d1d1d1;
-}
-
 .error-message {
   height: 20px; /* Adjust this height based on your design */
   visibility: hidden;

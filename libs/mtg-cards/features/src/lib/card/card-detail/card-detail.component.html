@@ -1,32 +1,40 @@
 <div *ngIf="card">
-<div class="component detail ">
-  <div class="row">
-    <div class="col-8"></div>
-    <div class="col-4">
-      <a
-        class="btn btn-primary btn-sm float-right"
-        role="button"
-        routerLink="edit"
-        *ngIf="mayEdit"
-        >Edit</a
-      >
-       <a
-        class="btn btn-primary btn-sm float-right"
-        role="button"
-        (click)="DeleteCard()"
-        *ngIf="mayEdit"
-        >Delete</a>
+  <div
+    class="centerDiv"
+    [ngStyle]="{ 'background-image': 'url(' + card.image + ')' }"
+  >
+    <div class="card">
+      <div class="component detail">
+        <div class="row">
+          <div class="col-8"></div>
+          <div class="col-4">
+            <a
+              class="btn btn-primary btn-sm float-right"
+              role="button"
+              routerLink="edit"
+              *ngIf="mayEdit"
+              >Edit</a
+            >
+            <a
+              class="btn btn-primary btn-sm float-right"
+              role="button"
+              (click)="DeleteCard()"
+              *ngIf="mayEdit"
+              >Delete</a
+            >
+          </div>
+        </div>
+        <div>
+          <h1>{{ card.title }}</h1>
+          <img [src]="card.image" />
+          <p>Type: {{ card.type }}</p>
+          <p>Rarity: {{ card.rarity }}</p>
+          <p>Manacost: {{ card.manacost }}</p>
+          <p *ngIf="card.foil">Foil: Yes</p>
+          <p *ngIf="!card.foil">Foil: No</p>
+          <p>Releasedate: {{ card.releasedate | date : 'shortDate' }}</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class ="centerDiv">
-  <h1>{{ card.title}}</h1>
-  <img [src]="card.image">
-  <p>Type: {{ card.type}}</p>
-  <p>Rarity: {{ card.rarity}}</p>
-  <p>Manacost: {{ card.manacost}}</p>
-  <p *ngIf="card.foil">Foil: Yes</p>
-  <p *ngIf="!card.foil">Foil: No</p>
-  <p>Releasedate: {{card.releasedate | date: 'shortDate'}}</p>
-  </div>
-</div>
 </div>

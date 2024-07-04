@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SetService } from '../../set/set.service';
 import { ImageService } from '../../image/image.service';
+import { AlertService } from '@avans-nx-workshop/mtg-cards/alert';
 
 @Component({
   selector: 'avans-nx-project-card-edit',
@@ -49,7 +50,7 @@ export class CardEditComponent implements OnInit, OnDestroy {
       title: ['', Validators.required],
       type: ['', Validators.required],
       rarity: ['', Validators.required],
-      foil: ['', Validators.required],
+      foil: [''],
       manacost: ['', Validators.required],
       releasedate: ['', Validators.required],
       setId: ['', Validators.required],

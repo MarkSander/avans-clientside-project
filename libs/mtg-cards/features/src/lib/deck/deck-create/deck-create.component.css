@@ -1,0 +1,43 @@
+.deckCreate {
+  background-image: url('https://gatherer.wizards.com/Images/background/Gray_Patterned_BG.jpg');
+  background-size: cover; /* To cover the entire area */
+  background-repeat: no-repeat; /* No repeat */
+  background-position: center center; /* Center the image */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: inline-block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  padding: 2.5rem; /* Increase padding for more space */
+  border-radius: 8px;
+}
+
+.form-outline {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  height: 20px; /* Adjust this height based on your design */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  color: red;
+}
+
+.error-message.show {
+  visibility: visible;
+  opacity: 1;
+}

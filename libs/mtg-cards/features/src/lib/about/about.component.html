@@ -1,76 +1,84 @@
 <div class="background">
-<div class="row">
-  <div class="col-sm-6 col-md-8 col-lg-9">
-    <h1 id="aboutTitle">Over deze applicatie</h1>
-    <p>
-      Deze applicatie is gemaakt in het kader van het vak 'Clientside web
-      frameworks' van Avans Hogeschool Breda.
-    </p>
-    <h3>Magic The Gathering</h3>
-    <p>
-      Magic The Gathering is een fysiek kaartspel waarbij je met minimaal 2 spelers speelt totdat je de laatste bent die het overleeft.
-      Bij dit spel heb je talloze kaarten. Er zijn verschillende typen kaarten zoals creatures, landen , instants en artifacts. Daarbij kost iedere kaart ook een in game valuta genaamd "mana" om neergelegd te kunnen worden. Ieder jaar komen er minstens 4 nieuwe sets uit wat weer duizenden nieuwe kaarten toevoegd. Een kaart heeft hierbij een naam,
-      het type kaart, de set, prijs, de zeldzaamheid van de kaart, en de manakost om de kaart neer te kunnen leggen.
-      Daarnaast beschikt Magic the gathering ook over decks. Dit zijn 100 kaarten die zijn samengesteld door Magic the gathering om gelijk mee te kunnen spelen met je vrienden of kun je deze zelf samenstellen.
-    </p>
-  </div>
-  <div class="col-sm-6 col-md-4 col-lg-3">
-    <div class="card">
-      <div class="d-flex justify-content-center align-items-center">
-<!--         <img
+  <div class="row">
+    <div class="col-sm-6 col-md-8 col-lg-9">
+      <h1 id="aboutTitle">Over deze applicatie</h1>
+      <p>
+        Deze applicatie is gemaakt in het kader van het vak 'Clientside web
+        frameworks' van Avans Hogeschool Breda.
+      </p>
+      <h3>Magic The Gathering</h3>
+      <p>
+        Magic The Gathering is een fysiek kaartspel waarbij je met minimaal 2
+        spelers speelt totdat je de laatste bent die het overleeft. Bij dit spel
+        heb je talloze kaarten. Er zijn verschillende typen kaarten zoals
+        creatures, landen , instants en artifacts. Daarbij kost iedere kaart ook
+        een in game valuta genaamd "mana" om neergelegd te kunnen worden. Ieder
+        jaar komen er minstens 4 nieuwe sets uit wat weer duizenden nieuwe
+        kaarten toevoegd. Een kaart heeft hierbij een naam, het type kaart, de
+        set, prijs, de zeldzaamheid van de kaart, en de manakost om de kaart
+        neer te kunnen leggen. Daarnaast beschikt Magic the gathering ook over
+        decks. Dit zijn 100 kaarten die zijn samengesteld door Magic the
+        gathering om gelijk mee te kunnen spelen met je vrienden of kun je deze
+        zelf samenstellen.
+      </p>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card">
+        <div class="d-flex justify-content-center align-items-center">
+          <!--         <img
           src="assets/images/mtgicon.jpg"
           class="card-img-top rounded-circle border profile-pic"
           alt="..."
         /> -->
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Mark Sander</h5>
-        <p class="card-text">Studentnummer: 2158345</p>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Mark Sander</h5>
+          <p class="card-text">Studentnummer: 2158345</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="row">
+    <h3>Entiteiten</h3>
 
-<h3>Entiteiten</h3>
-<div class="row">
-  <div class="col-sm-12 col-md-4">
-    <p>Kaart</p>
-    <ul>
-      <li>naam: string</li>
-      <li>id: integer</li>
-      <li>type: string</li>
-      <li>set: string</li>
-      <li>foil: boolean</li>
-      <li>manakost: integer</li>
-      <li>rarity: string</li>
-    </ul>
+    <div class="col-sm-12 col-md-4">
+      <p>Kaart</p>
+      <ul>
+        <li>naam: string</li>
+        <li>id: integer</li>
+        <li>type: string</li>
+        <li>set: string</li>
+        <li>foil: boolean</li>
+        <li>manakost: integer</li>
+        <li>rarity: string</li>
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <p>Set</p>
+      <ul>
+        <li>naam: string</li>
+        <li>id: integer</li>
+        <li>releasedate: date</li>
+        <li>kaarten: Kaart[]</li>
+        <li>setcode: string</li>
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <p>Deck</p>
+      <ul>
+        <li>naam: string</li>
+        <li>id: integer</li>
+        <li>format: string</li>
+        <li>userId: String</li>
+        <li>cards: Kaarten[]</li>
+      </ul>
+    </div>
   </div>
-  <div class="col-sm-12 col-md-4">
-    <p>Set</p>
-    <ul>
-      <li>naam: string</li>
-      <li>id: integer</li>
-      <li>releasedate: date</li>
-      <li>kaarten: Kaart[]</li>
-      <li>setcode: string</li>
-    </ul>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <p>Deck</p>
-    <ul>
-      <li>naam: string</li>
-      <li>id: integer</li>
-      <li>format: string</li>
-      <li>userId: String</li>
-      <li>cards: Kaarten[]</li>
-    </ul>
-  </div>
-</div>
-<div class="d-flex justify-content-center align-items-center">
-<!--   <img
+  <div class="d-flex justify-content-center align-items-center">
+    <!--   <img
     src="assets/images/Datamodel.JPG"
   /> -->
-</div>
+  </div>
 </div>
 <!-- <div class="row">
   <div class="col-12">
@@ -81,4 +89,3 @@
     </div>
   </div>
 </div> -->
-

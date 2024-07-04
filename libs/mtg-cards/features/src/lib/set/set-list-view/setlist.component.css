@@ -1,13 +1,15 @@
-.background {
+.setlist {
   background-image: url('https://gatherer.wizards.com/Images/background/Gray_Patterned_BG.jpg');
   background-size: cover; /* To cover the entire area */
   background-repeat: no-repeat; /* No repeat */
   background-position: center center; /* Center the image */
-  width: 100vw; /* Full viewport width */
-  height: 100vh; /* Full viewport height */
-  color: white;
+  width: 100vw;
+  height: 100vh;
 }
 
-.row {
-  margin-left: 1%;
+.table-container {
+  margin: 1rem auto;
+  /*   margin-left: 2rem;
+  margin-right: 2rem; */
+  max-width: 40rem;
 }

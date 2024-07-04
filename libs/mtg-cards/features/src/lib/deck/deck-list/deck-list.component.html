@@ -1,12 +1,13 @@
-<div *ngFor="let deck of decks">
-    <a [routerLink]="[deck._id]">
-      <h2> {{deck.name}}</h2>
-    </a>
-      <h3> {{deck.format}}</h3>
-    <div *ngFor="let card of deck.cards">
-      <p>{{card.title}}</p>
+<div class="decklist">
+  <div class="card-group d-flex justify-content-center">
+    <div *ngFor="let deck of decks">
+      <div [routerLink]="[deck._id]" class="card text-center m-1">
+        <div class="card-body">
+          <h3 class="card-title">{{ deck.name }}</h3>
+        </div>
+        <p class="card-text">{{ deck.format }}</p>
+      </div>
     </div>
+  </div>
+  <button routerLink="create" *ngIf="loggedInUser">New Deck</button>
 </div>
-<button routerLink="create" *ngIf="(loggedInUser$ | async)">
-  New Deck
-</button>

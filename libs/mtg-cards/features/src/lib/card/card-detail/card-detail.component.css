@@ -1,5 +1,27 @@
-.centerDiv{
-  max-width: fit-content;
+img {
+  max-width: 18rem;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.centerDiv {
+  /* background-image: url('https://gatherer.wizards.com/Images/background/Gray_Patterned_BG.jpg'); */
+  background-size: cover; /* To cover the entire area */
+  background-repeat: no-repeat; /* No repeat */
+  background-position: center center; /* Center the image */
+  width: 100vw; /* Full viewport width */
+  height: 100%; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  /*   max-width: fit-content;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
+}
+
+.card {
+  width: fit-content;
+  padding: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: fit-content;
 }

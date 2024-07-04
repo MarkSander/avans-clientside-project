@@ -1,24 +1,36 @@
-<div class="component list">
-  <div class="row">
-    <div class="col">
-      <a class="btn btn-primary btn-sm float-right" href="#" role="button" routerLink="new" *ngIf="mayEdit">New</a>
+<div class="setlist">
+  <div class="component list">
+    <div class="row">
+      <div class="col">
+        <a
+          class="btn btn-primary btn-sm float-right"
+          role="button"
+          routerLink="new"
+          *ngIf="mayEdit"
+          >New</a
+        >
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Release date</th>
+            <th>Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let set of sets">
+            <td>
+              <a [routerLink]="set._id">{{ set.name }}</a>
+            </td>
+            <td>{{ set.releasedate | date : 'shortDate' }}</td>
+            <td>{{ set.setcode }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Release date</th>
-        <th>Code</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let set of sets">
-          <td><a [routerLink]="set._id">{{set.name}}</a></td>
-          <td>{{set.releasedate | date: 'shortDate'}}</td>
-          <td>{{set.setcode}}</td>
-      </tr>
-    </tbody>
-  </table>
 </div>

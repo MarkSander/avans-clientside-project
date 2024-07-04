@@ -9,7 +9,7 @@ import { AuthService } from '@avans-nx-project/mtg-cards/user-auth';
 @Component({
   selector: 'avans-nx-project-set-detail',
   templateUrl: './set-detail.component.html',
-  styles: [],
+  styleUrl: './set-detail.component.css',
 })
 export class SetDetailComponent implements OnInit, OnDestroy {
   set!: ISet;

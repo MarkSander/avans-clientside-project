@@ -1,38 +1,54 @@
-<div class="component detail" *ngIf="deck">
-  <div class="row">
-<!--     <div class="col-8"></div> -->
-    <div class="col-4">
-      <a
-        class="btn btn-primary btn-sm float-right"
-        role="button"
-        routerLink="edit"
-        *ngIf="authService.userMayEdit(deck.userId) || authService.userIsEditor() || authService.userIsAdmin()"
-        >Edit</a>
-       <a
-        *ngIf="authService.userMayEdit(deck.userId) || authService.userIsEditor() || authService.userIsAdmin()"
-        class="btn btn-primary btn-sm float-right"
-        role="button"
-        (click)="deleteDeck()"
-        >Delete</a>
+<div class="deckdetail">
+  <div class="card">
+    <div class="component detail" *ngIf="deck">
+      <div class="row">
+        <!--     <div class="col-8"></div> -->
+        <div class="col-4">
+          <a
+            class="btn btn-primary btn-sm float-right"
+            role="button"
+            routerLink="edit"
+            *ngIf="
+              authService.userMayEdit(deck.userId) ||
+              authService.userIsEditor() ||
+              authService.userIsAdmin()
+            "
+            >Edit</a
+          >
+          <a
+            *ngIf="
+              authService.userMayEdit(deck.userId) ||
+              authService.userIsEditor() ||
+              authService.userIsAdmin()
+            "
+            class="btn btn-primary btn-sm float-right"
+            role="button"
+            (click)="deleteDeck()"
+            >Delete</a
+          >
+        </div>
+      </div>
+      <h5>Title:</h5>
+      <p>{{ deck.name }}</p>
+      <h5>Format:</h5>
+      <p>{{ deck.format }}</p>
+      <h5>Cards in deck:</h5>
+      <div *ngIf="deck.cards.length === 0">
+        <p>Deck has no cards yet</p>
+      </div>
+      <div *ngFor="let card of deck.cards">
+        <p>{{ card.title }}</p>
+      </div>
+      <div *ngIf="user">
+        <h5>Deck made by:</h5>
+        <p>{{ user.username }}</p>
+      </div>
+      <button
+        [routerLink]="'/cards/deck/' + [deck._id]"
+        *ngIf="authService.userMayEdit(deck.userId)"
+      >
+        Add card
+      </button>
     </div>
   </div>
-  <h1>Title: {{deck.name}}</h1>
-  <h2>Format: {{deck.format}}</h2>
-  <h2>Cards in deck:</h2>
-  <div *ngIf="deck.cards.length === 0">
-    <h2>Deck has no cards yet</h2>
-  </div>
-  <div *ngFor="let card of deck.cards">
-    <p>{{card.title}}</p>
-  </div>
-  <h2 *ngIf="user">Deck made by: {{user.username}}</h2>
-  <button [routerLink]="'/cards/deck/' + [deck._id]"*ngIf="authService.userMayEdit(deck.userId)">
-    Add card
-  </button>
-
-<!--   <h1>{{ card.title}}</h1>
-  <p>Type: {{ card.type}}</p>
-  <p>Rarity: {{ card.rarity}}</p>
-  <p>Manacost: {{ card.manacost}}</p>
-  <p>Price: {{ card.price}}</p> -->
 </div>
